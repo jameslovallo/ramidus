@@ -3,9 +3,10 @@ import ardi, { html } from 'https://unpkg.com/ardi'
 ardi({
   component: 'app-footer',
   template() {
+    const year = new Date().getFullYear()
     return html`
       <footer>
-        <p>© ${new Date().getFullYear()} James Lovallo</p>
+        <p>© ${year} James Lovallo</p>
       </footer>
       <style>
         ${this.css}
