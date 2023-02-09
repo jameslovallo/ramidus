@@ -1,4 +1,4 @@
-document.head.innerHTML += /* html */ `<link href="/style.css" rel="stylesheet" />`
+document.head.innerHTML += `<link href="/style.css" rel="stylesheet" />`
 
 import '/components/app-footer.js'
 import '/components/app-layout.js'
