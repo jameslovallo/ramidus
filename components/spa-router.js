@@ -26,8 +26,8 @@ ardi({
     if (children.length === 1 && children[0].tagName === 'SLOT') {
       children = this.children[0].assignedElements()
     }
-    document.title = [...children].filter(
-      (el) => el.tagName === 'H1'
+    document.title = [...children].filter((el) =>
+      ['TITLE', 'H1'].includes(el.tagName)
     )[0].innerText
   },
   ready() {

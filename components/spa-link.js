@@ -9,6 +9,7 @@ ardi({
         part="link"
         href=${this.href}
         @mouseover=${(e) => this.hover(e)}
+        @mouseleave=${() => (router.pageData = '')}
         @click=${(e) => this.click(e)}
       >
         <slot></slot>

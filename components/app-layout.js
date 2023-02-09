@@ -17,13 +17,23 @@ ardi({
       <app-footer></app-footer>
     `
   },
+  createTag(target, type, attrs) {
+    const tag = document.createElement(type)
+    Object.keys(attrs).forEach((key) => {
+      tag[key] = attrs[key]
+    })
+    target.appendChild(tag)
+  },
   ready() {
-    const viewport = document.createElement('meta')
-    viewport.name = 'viewport'
-    viewport.content = 'width=device-width, initial-scale=1'
-    document.head.innerHTML += `
-      <link href="/style.css" rel="stylesheet" />
-    `
+    this.createTag(document.head, 'meta', {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    })
+
+    this.createTag(document.head, 'link', {
+      href: '/style.css',
+      rel: 'stylesheet',
+    })
   },
   css: /* css */ `
     main {
