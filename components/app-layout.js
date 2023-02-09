@@ -29,7 +29,6 @@ ardi({
       name: 'viewport',
       content: 'width=device-width, initial-scale=1',
     })
-
     this.createTag(document.head, 'link', {
       href: '/style.css',
       rel: 'stylesheet',
