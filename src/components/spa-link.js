@@ -14,9 +14,6 @@ ardi({
       >
         <slot></slot>
       </a>
-      <style>
-        ${this.css}
-      </style>
     `
   },
   pushHistory(href) {

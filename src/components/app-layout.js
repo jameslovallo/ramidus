@@ -6,7 +6,11 @@ ardi({
   template() {
     return html`
       <style>
-        ${this.css}
+        main {
+          margin: 0 auto;
+          max-width: 70ch;
+          padding: 1rem 1rem 4rem;
+        }
       </style>
       <app-nav></app-nav>
       <main>
@@ -30,15 +34,8 @@ ardi({
       content: 'width=device-width, initial-scale=1',
     })
     this.createTag(document.head, 'link', {
-      href: '/style.css',
+      href: '/src/style.css',
       rel: 'stylesheet',
     })
   },
-  css: /* css */ `
-    main {
-      margin: 0 auto;
-      max-width: 70ch;
-      padding: 1rem 1rem 4rem;
-    }
-  `,
 })
