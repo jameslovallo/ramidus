@@ -19,7 +19,7 @@ ardi({
       box-shadow: 0 0 3px rgba(0,0,0,0.25);
       display: flex;
       gap: 1rem;
-      padding: 1rem;
+      padding: 0 1rem;
     }
     @media (prefers-color-scheme: dark) {
       nav {
@@ -27,11 +27,12 @@ ardi({
       }
     }
     spa-link:first-of-type {
-      display: inline-block;
       margin-right: auto;
     }
     spa-link::part(link) {
       color: inherit;
+      display: inline-block;
+      padding: 1rem 0;
       text-decoration: none;
     }
   `,
