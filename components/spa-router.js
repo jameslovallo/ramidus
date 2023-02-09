@@ -19,8 +19,19 @@ ardi({
       this.innerHTML = this.pageData
       this.pageData = ''
     } else this.getPage(href, true)
+    this.setTitle()
+  },
+  setTitle() {
+    let children = this.children
+    if (children.length === 1 && children[0].tagName === 'SLOT') {
+      children = this.children[0].assignedElements()
+    }
+    document.title = [...children].filter(
+      (el) => el.tagName === 'H1'
+    )[0].innerText
   },
   ready() {
+    this.setTitle()
     window.router = this
     const href = location.pathname
     history.pushState({ page: href }, '', href.replace('index.html', ''))

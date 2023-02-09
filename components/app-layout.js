@@ -5,12 +5,9 @@ ardi({
   state: () => ({ pageData: '' }),
   template() {
     return html`
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-          ${this.css}
-        </style>
-      </head>
+      <style>
+        ${this.css}
+      </style>
       <app-nav></app-nav>
       <main>
         <spa-router>
@@ -18,6 +15,12 @@ ardi({
         </spa-router>
       </main>
       <app-footer></app-footer>
+    `
+  },
+  ready() {
+    document.head.innerHTML += `
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="/style.css" rel="stylesheet" />
     `
   },
   css: /* css */ `
