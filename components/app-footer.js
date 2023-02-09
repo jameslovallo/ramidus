@@ -4,7 +4,9 @@ ardi({
   component: 'app-footer',
   template() {
     return html`
-      <footer>Copyright James Lovallo</footer>
+      <footer>
+        <p>© ${new Date().getFullYear()} James Lovallo</p>
+      </footer>
       <style>
         ${this.css}
       </style>
@@ -15,7 +17,7 @@ ardi({
 			background: var(--surface);
 			display: block;
 			left: 0;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem;
 			position: sticky;
 			text-align: center;
 			top: 100vh;
