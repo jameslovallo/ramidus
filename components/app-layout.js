@@ -18,8 +18,10 @@ ardi({
     `
   },
   ready() {
+    const viewport = document.createElement('meta')
+    viewport.name = 'viewport'
+    viewport.content = 'width=device-width, initial-scale=1'
     document.head.innerHTML += `
-      <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="/style.css" rel="stylesheet" />
     `
   },
