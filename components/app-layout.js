@@ -5,9 +5,12 @@ ardi({
   state: () => ({ pageData: '' }),
   template() {
     return html`
-      <style>
-        ${this.css}
-      </style>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+          ${this.css}
+        </style>
+      </head>
       <app-nav></app-nav>
       <main>
         <spa-router>
