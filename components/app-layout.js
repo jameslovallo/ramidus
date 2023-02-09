@@ -19,9 +19,9 @@ ardi({
   },
   css: /* css */ `
     main {
-      margin: 0 auto 5rem;
+      margin: 0 auto;
       max-width: 70ch;
-      padding: 0 1rem;
+      padding: 1rem 1rem 4rem;
     }
   `,
 })
