@@ -1,5 +1,11 @@
 import ardi, { html } from 'https://unpkg.com/ardi'
 
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+]
+
 ardi({
   component: 'app-nav',
   template() {
