@@ -16,11 +16,11 @@ ardi({
       </a>
     `
   },
-  pushHistory(href) {
-    history.pushState({ page: href }, '', href.replace('index.html', ''))
-  },
   pagePath() {
     return (this.href !== '/' ? this.href : '') + '/index.html'
+  },
+  pushHistory(href) {
+    history.pushState({ page: href }, '', href.replace('index.html', ''))
   },
   getPage(setPage) {
     if (!this.pageData) {

@@ -7,14 +7,16 @@ ardi({
   },
   parse(text, firstLoad) {
     if (text.trim().startsWith('#')) {
-      import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then((m) => {
-        text = text
-          .split('\n')
-          .map((line) => line.trim())
-          .join('\n')
-        text = m.parse(text)
-        this.innerHTML = text
-      })
+      import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
+        (marked) => {
+          this.innerHTML = marked.parse(
+            text
+              .split('\n')
+              .map((line) => line.trim())
+              .join('\n')
+          )
+        }
+      )
     } else if (!firstLoad) {
       this.innerHTML = text
     }
