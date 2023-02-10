@@ -19,9 +19,6 @@ ardi({
   pagePath() {
     return (this.href !== '/' ? this.href : '') + '/index.html'
   },
-  pushHistory(href) {
-    history.pushState({ page: href }, '', href.replace('index.html', ''))
-  },
   getPage(setPage) {
     if (!this.pageData) {
       fetch(this.pagePath())
@@ -36,7 +33,7 @@ ardi({
   setPage() {
     if (this.pageData) {
       router.setPage(this.pageData)
-      this.pushHistory(this.pagePath())
+      router.pushHistory(this.href, this.pageData)
     } else this.getPage(true)
   },
   hover(e) {

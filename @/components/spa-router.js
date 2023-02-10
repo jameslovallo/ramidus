@@ -5,7 +5,7 @@ ardi({
   template() {
     return html`<slot></slot>`
   },
-  parse(text, firstLoad) {
+  setPage(text, firstLoad) {
     if (text.trim().startsWith('#')) {
       import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
         (marked) => {
@@ -18,9 +18,8 @@ ardi({
           )
         }
       )
-    } else if (!firstLoad) {
-      this.innerHTML = text
-    }
+    } else if (!firstLoad) this.innerHTML = text
+    this.setTitle()
   },
   highlight() {
     import('https://cdn.skypack.dev/prismjs').then((prism) => {
@@ -30,10 +29,6 @@ ardi({
       rel: 'stylesheet',
       href: '/@/prism.css',
     })
-  },
-  setPage(pageData) {
-    if (pageData) this.parse(pageData)
-    this.setTitle()
   },
   setTitle() {
     let children = this.children
@@ -52,7 +47,16 @@ ardi({
     })
     target.appendChild(tag)
   },
+  pushHistory(href, data) {
+    history.pushState(
+      { path: href.replace('index.html', '') },
+      undefined,
+      href.replace('index.html', '')
+    )
+    if (!sessionStorage[href]) sessionStorage[href] = data
+  },
   ready() {
+    // setup the page
     this.createTag(document.head, 'meta', {
       name: 'viewport',
       content: 'width=device-width, initial-scale=1',
@@ -62,13 +66,11 @@ ardi({
       rel: 'stylesheet',
     })
     window.router = this
-    this.setTitle()
-    this.parse(layout.innerHTML, true)
+    this.setPage(layout.innerHTML, true)
     // history stuff
-    const href = location.pathname
-    history.pushState({ page: href }, '', href.replace('index.html', ''))
+    this.pushHistory(location.pathname, layout.innerHTML)
     addEventListener('popstate', (e) => {
-      if (e.state.page) this.setPage(e.state.page, false)
+      this.setPage(sessionStorage.getItem(e.state.path))
     })
   },
 })
