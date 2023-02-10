@@ -34,7 +34,7 @@ ardi({
       content: 'width=device-width, initial-scale=1',
     })
     this.createTag(document.head, 'link', {
-      href: '/src/style.css',
+      href: '/@/style.css',
       rel: 'stylesheet',
     })
   },
