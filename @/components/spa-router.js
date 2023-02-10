@@ -7,7 +7,7 @@ ardi({
   },
   parse(text, firstLoad) {
     if (text.trim().startsWith('#')) {
-      import('/@/lib/marked@4.2.12.esm.js').then((m) => {
+      import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then((m) => {
         text = text
           .split('\n')
           .map((line) => line.trim())
