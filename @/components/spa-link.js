@@ -27,9 +27,8 @@ ardi({
       fetch(this.pagePath())
         .then((res) => res.text())
         .then((html) => {
-          this.pageData = html
-            .split('<app-layout>')[1]
-            .split('</app-layout>')[0]
+          const tag = layout.tagName.toLowerCase()
+          this.pageData = html.split(`<${tag}>`)[1].split(`</${tag}>`)[0]
           setPage && this.setPage()
         })
     }
