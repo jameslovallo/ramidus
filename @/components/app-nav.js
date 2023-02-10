@@ -3,6 +3,7 @@ import ardi, { html } from 'https://unpkg.com/ardi'
 const nav = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/docs', label: 'Docs' },
   { href: '/contact', label: 'Contact' },
 ]
 

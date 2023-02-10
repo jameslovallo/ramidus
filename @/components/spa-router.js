@@ -16,23 +16,38 @@ ardi({
   },
   setPage(href) {
     if (this.pageData) {
-      this.innerHTML = this.pageData
+      this.parse(this.pageData)
       this.pageData = ''
     } else this.getPage(href, true)
     this.setTitle()
+  },
+  parse(text) {
+    if (text.trim().startsWith('#')) {
+      import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then((m) => {
+        text = text
+          .split('\n')
+          .map((line) => line.trim())
+          .join('\n')
+        text = m.parse(text)
+        this.innerHTML = text
+      })
+    } else this.innerHTML = text
   },
   setTitle() {
     let children = this.children
     if (children.length === 1 && children[0].tagName === 'SLOT') {
       children = this.children[0].assignedElements()
     }
-    document.title = [...children].filter((el) =>
+    const titleEl = [...children].filter((el) =>
       ['TITLE', 'H1'].includes(el.tagName)
-    )[0].innerText
+    )[0]
+    if (titleEl) document.title = titleEl.innerText
   },
   ready() {
-    this.setTitle()
     window.router = this
+    this.setTitle()
+    this.parse(document.querySelector('app-layout').innerHTML)
+    // history stuff
     const href = location.pathname
     history.pushState({ page: href }, '', href.replace('index.html', ''))
     addEventListener('popstate', (e) => {
