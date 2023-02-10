@@ -25,10 +25,13 @@ ardi({
     import('https://cdn.skypack.dev/prismjs').then((prism) => {
       prism.highlightAllUnder(router)
     })
-    this.createTag(layout.shadowRoot, 'link', {
-      rel: 'stylesheet',
-      href: '/@/prism.css',
-    })
+    if (!this.prismCssLoaded) {
+      this.createTag(layout.shadowRoot, 'link', {
+        rel: 'stylesheet',
+        href: '/@/prism.css',
+      })
+      this.prismCssLoaded = true
+    }
   },
   setTitle() {
     let children = this.children
@@ -62,8 +65,12 @@ ardi({
       content: 'width=device-width, initial-scale=1',
     })
     this.createTag(document.head, 'link', {
-      href: '/@/style.css',
       rel: 'stylesheet',
+      href: '/@/style.css',
+    })
+    this.createTag(document.head, 'link', {
+      rel: 'icon',
+      href: '/@/assets/favicon.svg',
     })
     window.router = this
     this.setPage(layout.innerHTML, true)
