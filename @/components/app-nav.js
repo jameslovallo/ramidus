@@ -1,25 +1,19 @@
 import ardi, { html } from 'https://unpkg.com/ardi'
 
-const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/docs', label: 'Docs' },
-  { href: '/demo', label: 'Demo' },
-  { href: '/contact', label: 'Contact' },
-]
-
 ardi({
   component: 'app-nav',
   template() {
     return html`
-      <nav>
-        ${nav.map(
-          (page) => html`<spa-link href=${page.href}>${page.label}</spa-link>`
-        )}
-      </nav>
       <style>
         ${this.css}
       </style>
+      <nav>
+        <spa-link href="/">Home</spa-link>
+        <spa-link href="/about">About</spa-link>
+        <spa-link href="/docs">Docs</spa-link>
+        <a href="/demo">Demo</a>
+        <spa-link href="/contact">Contact</spa-link>
+      </nav>
     `
   },
   css: /* css */ `
@@ -37,7 +31,8 @@ ardi({
     spa-link:first-of-type {
       margin-right: auto;
     }
-    spa-link::part(link) {
+    spa-link::part(link),
+    a {
       color: inherit;
       display: inline-block;
       padding: 1rem 0;
