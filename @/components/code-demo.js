@@ -147,7 +147,6 @@ customElements.define(
     }
 
     setFrame() {
-      console.log(this.code)
       this.iframe.srcdoc = `
 				<meta
 					name="viewport"
