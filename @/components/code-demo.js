@@ -25,10 +25,10 @@ customElements.define(
 				color: #bbb;
 			}
 			nav label {
+				color: white;
 				font-size: 13px;
 			}
 			.playground-grid {
-				color-scheme: dark;
 				display: flex;
 				overflow: hidden;
 			}
