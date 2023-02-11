@@ -102,18 +102,31 @@ customElements.define(
         this.code[type] = content.join('\n')
       })
 
+      const langs = Object.keys(this.code).length > 1
+      const label = this.getAttribute('label')
+
       this.innerHTML = `
 				<style>${this.css}</style>
 				<div class="playground-grid">
 					<div class="playground-container">
-						<nav>
-							<label>
-								${this.getAttribute('label')}
-							</label>
-							<select>
-								${Object.keys(this.code).map((lang) => `<option>${lang}</option>`)}
-							</select>
-						</nav>
+						${
+              langs || label
+                ? `
+									<nav>
+										${label ? `<label>${label}</label>` : ''}
+										${
+                      langs
+                        ? `
+													<select>
+														${Object.keys(this.code).map((lang) => `<option>${lang}</option>`)}
+													</select>
+													`
+                        : ''
+                    }
+									</nav>
+									`
+                : ''
+            }
 						<div class="playground"></div>
 					</div>
 					<iframe ref="iframe"></iframe>
@@ -126,7 +139,7 @@ customElements.define(
       this.setFrame()
 
       this.codeSwitcher = this.querySelector('select')
-      this.codeSwitcher.addEventListener('change', (e) => {
+      this?.codeSwitcher.addEventListener('change', (e) => {
         this.editor.getModel().dispose()
         this.editor.dispose()
         this.loadMonaco(e.target.value)
@@ -177,7 +190,7 @@ customElements.define(
                 enabled: false,
               },
               roundedSelection: true,
-              scrollBeyondLastLine: false,
+              scrollBeyondLastLine: true,
               tabSize: 2,
               theme: 'vs-dark',
               value: this.code[lang],
