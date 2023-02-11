@@ -41,6 +41,7 @@ customElements.define(
 				width: 100%;
 				height: 100%;
 				overflow: hidden;
+				position: relative;
 			}
 			@media(max-width: 720px) {
 				.playground-grid {
