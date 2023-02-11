@@ -191,7 +191,7 @@ customElements.define(
                 enabled: false,
               },
               roundedSelection: true,
-              scrollBeyondLastLine: true,
+              scrollBeyondLastLine: false,
               tabSize: 2,
               theme: 'vs-dark',
               value: this.code[lang],
