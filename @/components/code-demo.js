@@ -161,13 +161,20 @@ customElements.define(
             : ''
         }
 				${
-          this.code.babel
+          this.code.typescript
             ? `
 							<script
 								src="https://unpkg.com/@babel/standalone/babel.min.js"
 							></script>
-							<script type="text/babel" data-type="module">
-								${this.code.babel}
+							<script>
+								Babel.registerPreset('tsx', {
+									presets: [
+										[Babel.availablePresets['typescript'], {allExtensions: true, isTSX: true}]],
+									},
+								);
+							</script>
+							<script type="text/babel" data-type="module" data-presets="tsx,react">
+								${this.code.typescript}
 							</script>
 							`
             : ''
@@ -179,11 +186,17 @@ customElements.define(
       import('https://cdn.skypack.dev/@monaco-editor/loader@1.3.2').then(
         (loader) => {
           loader.default.init().then((monaco) => {
+            monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions(
+              {
+                noSemanticValidation: true,
+                noSyntaxValidation: true,
+              }
+            )
             this.editor = monaco.editor.create(this.playground, {
               automaticLayout: true,
               folding: false,
               fontSize: '11px',
-              language: lang === 'babel' ? 'javascript' : lang,
+              language: lang,
               lineHeight: 2,
               lineNumbers: 'off',
               minimap: {
@@ -193,6 +206,7 @@ customElements.define(
               scrollBeyondLastLine: false,
               tabSize: 2,
               theme: 'vs-dark',
+              validate: false,
               value: this.code[lang],
               lineDecorationsWidth: 12,
             })
