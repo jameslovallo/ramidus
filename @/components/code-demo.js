@@ -1,18 +1,20 @@
 customElements.define(
   'code-demo',
-  class extends HTMLElement {
+  class extends HTMLPreElement {
     constructor() {
       super()
     }
 
     css = `
-			code-demo {
+			[is=code-demo] {
 				background: #1e1e1e;
 				border: 1px solid rgba(125,125,125,0.5);
 				border-radius: 1rem;
 				display: block;
+				font-family: sans-serif;
 				margin: 1rem 0;
 				overflow: hidden;
+				white-space: normal;
 			}
 			nav {
 				display: flex;
@@ -224,5 +226,6 @@ customElements.define(
     connectedCallback() {
       this.setupEnvironment()
     }
-  }
+  },
+  { extends: 'pre' }
 )
