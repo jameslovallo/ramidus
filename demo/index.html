@@ -58,7 +58,7 @@ const Counter = (props) => {
 	const Button = styled.button`
 		border: 1px solid;
 		border-radius: 2rem;
-		color: ${props.color};
+		color: ${props.color || 'currentcolor'};
 		cursor: pointer;
 		padding: 0.25rem 0.5rem;
 	`;
