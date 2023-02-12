@@ -10,15 +10,12 @@ import ardi, { html } from "//unpkg.com/ardi";
 
 ardi({
 	component: "ardi-counter",
-	props: {
-		color: [String, 'currentcolor'],
-		step: [Number, 1]
-	},
+	props: { color: [String, 'currentcolor'] },
 	state: () => ({ count: 0 }),
 	template() {
 		return html`
 		<style>${this.css()}</style>
-		<button @click=${() => (this.count += this.step)}>
+		<button @click=${() => this.count ++}>
 			Count: ${this.count}
 		</button>`
 	},
@@ -37,7 +34,7 @@ ardi({
 -->
 
 <!-- html
-<ardi-counter color="darkslateblue" step="2"></ardi-counter>
+<ardi-counter color="darkslateblue"></ardi-counter>
 -->
 
 <!-- css
@@ -68,13 +65,13 @@ const Counter = (props) => {
 	`;
 
 	return (
-		<Button onClick={() => setCount(count + props.step)}>
+		<Button onClick={() => setCount(count +1}>
 			Count: {count}
 		</Button>
 	);
 };
 
-ReactDOM.render(<Counter color="darkslateblue" step={2} />, document.body);
+ReactDOM.render(<Counter color="darkslateblue" />, document.body);
 -->
 <!-- css
 :root, body {
