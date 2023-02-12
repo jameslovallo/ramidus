@@ -51,6 +51,7 @@ customElements.define(
 				}
 			}
 			iframe {
+				background: white;
 				border: 0;
 				box-shadow: 0 0 15px #1e1e1e;
 				display: block;
@@ -152,7 +153,6 @@ customElements.define(
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				>
-				<style>:root{color-scheme: light;}</style>
 				${this.code.css ? `<style>${this.code.css}</style>` : ''}
 				${this.code?.html}
 				${
