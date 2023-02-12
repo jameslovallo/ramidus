@@ -5,7 +5,15 @@ ardi({
   template() {
     return html`<slot></slot>`
   },
-  setPage(text, firstLoad) {
+  setPage(text, path, firstLoad) {
+    if (text.includes('<!-- native-load -->')) {
+      const reload = sessionStorage.getItem('native-reload')
+      if (!reload) {
+        sessionStorage.setItem('native-reload', true)
+        location = path
+        return
+      }
+    } else sessionStorage.removeItem('native-reload')
     if (text.trim().startsWith('#')) {
       import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
         (marked) => {
@@ -73,11 +81,11 @@ ardi({
       href: '/@/assets/favicon.svg',
     })
     window.router = this
-    this.setPage(layout.innerHTML, true)
+    this.setPage(layout.innerHTML, location.pathname, true)
     // history stuff
     this.pushHistory(location.pathname, layout.innerHTML)
     addEventListener('popstate', (e) => {
-      this.setPage(sessionStorage.getItem(e.state.path))
+      this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
     })
   },
 })

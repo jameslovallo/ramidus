@@ -32,7 +32,7 @@ ardi({
   },
   setPage() {
     if (this.pageData) {
-      router.setPage(this.pageData)
+      router.setPage(this.pageData, this.href)
       router.pushHistory(this.href, this.pageData)
     } else this.getPage(true)
   },
