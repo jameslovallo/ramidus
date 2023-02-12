@@ -195,20 +195,22 @@ customElements.define(
             this.editor = monaco.editor.create(this.playground, {
               automaticLayout: true,
               folding: false,
-              fontSize: '11px',
+              fontSize: '12px',
+              hover: { enabled: false },
               language: lang,
+              lightbulb: { enabled: false },
+              lineDecorationsWidth: 12,
               lineHeight: 2,
               lineNumbers: 'off',
-              minimap: {
-                enabled: false,
-              },
+              minimap: { enabled: false },
+              quickSuggestions: false,
               roundedSelection: true,
               scrollBeyondLastLine: false,
+              showUnused: false,
               tabSize: 2,
               theme: 'vs-dark',
               validate: false,
               value: this.code[lang],
-              lineDecorationsWidth: 12,
             })
             this.editor.onDidChangeModelContent(() => {
               this.code[lang] = this.editor.getValue()
