@@ -152,7 +152,11 @@ customElements.define(
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				>
-				${this.code.css ? `<style>${this.code.css}</style>` : ''}
+				${
+          this.code.css
+            ? `<style>:root{color-scheme: light}${this.code.css}</style>`
+            : ''
+        }
 				${this.code?.html}
 				${
           this.code.javascript

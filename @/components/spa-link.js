@@ -42,6 +42,7 @@ ardi({
   },
   click(e) {
     e.preventDefault()
+    sessionStorage.removeItem('native-load')
     this.setPage()
   },
 })

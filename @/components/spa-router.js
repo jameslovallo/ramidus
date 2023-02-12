@@ -7,13 +7,12 @@ ardi({
   },
   setPage(text, path, firstLoad) {
     if (text.includes('<!-- native-load -->')) {
-      const reload = sessionStorage.getItem('native-reload')
-      if (!reload) {
-        sessionStorage.setItem('native-reload', true)
+      if (!sessionStorage.getItem('native-load')) {
+        sessionStorage.setItem('native-load', true)
         location = path
         return
       }
-    } else sessionStorage.removeItem('native-reload')
+    } else sessionStorage.removeItem('native-load')
     if (text.trim().startsWith('#')) {
       import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
         (marked) => {
