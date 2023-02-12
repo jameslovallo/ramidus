@@ -38,7 +38,7 @@ ardi({
 -->
 
 <!-- html
-<ardi-counter></ardi-counter>
+<ardi-counter color="darkslateblue" step="2"></ardi-counter>
 -->
 
 <!-- css
@@ -58,15 +58,17 @@ import styled from "https://cdn.skypack.dev/styled-components@5.3.3";
 import React, { useState } from "https://cdn.skypack.dev/react@17.0.1";
 import ReactDOM from "https://cdn.skypack.dev/react-dom@17.0.1";
 
-const Button = styled.button`
-	border: 1px solid;
-	border-radius: 2rem;
-	cursor: pointer;
-	padding: 0.25rem 0.5rem;
-`;
-
 const Counter = (props) => {
 	const [count, setCount] = useState(0);
+
+	const Button = styled.button`
+		border: 1px solid;
+		border-radius: 2rem;
+		color: ${props.color};
+		cursor: pointer;
+		padding: 0.25rem 0.5rem;
+	`;
+
 	return (
 		<Button onClick={() => setCount(count + props.step)}>
 			Count: {count}
@@ -74,7 +76,7 @@ const Counter = (props) => {
 	);
 };
 
-ReactDOM.render(<Counter step={2} />, document.body);
+ReactDOM.render(<Counter color="darkslateblue" step={2} />, document.body);
 -->
 <!-- css
 :root, body {
