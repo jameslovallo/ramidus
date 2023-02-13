@@ -1,6 +1,5 @@
 // define layout element
 window.layout = document.querySelector('app-layout')
-console.log(layout)
 
 // load all components
 const components = [
