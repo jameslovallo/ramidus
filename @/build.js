@@ -37,9 +37,13 @@ function fromDir(startPath, filter) {
       fromDir(filename, filter) //recurse
     } else if (filename.endsWith(filter)) {
       const file = getFile(filename)
-      fs.writeFileSync(filename, `${pageHead}<body>${file}</body>`, {
-        encoding: 'utf8',
-      })
+      fs.writeFileSync(
+        filename,
+        `${pageHead}<body style="opacity: 0; transition: opacity .5s;">${file}</body>`,
+        {
+          encoding: 'utf8',
+        }
+      )
     }
   }
 }
