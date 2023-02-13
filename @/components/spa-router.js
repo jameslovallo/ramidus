@@ -19,13 +19,13 @@ ardi({
   setPage(doc, path, firstLoad) {
     const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
     if (firstLoad && !prebuilt) this.setHead()
-    if (doc.includes('<!-- native-load -->')) {
-      if (!sessionStorage.getItem('native-load')) {
-        sessionStorage.setItem('native-load', true)
+    if (doc.includes('<!-- spa-reload -->')) {
+      if (!sessionStorage.getItem('spa-reload')) {
+        sessionStorage.setItem('spa-reload', true)
         location = path
         return
       }
-    } else sessionStorage.removeItem('native-load')
+    } else sessionStorage.removeItem('spa-reload')
     if (doc.trim().startsWith('#')) {
       this.handleMD(doc)
     } else if (!firstLoad) this.innerHTML = doc
@@ -51,7 +51,7 @@ ardi({
     if (!this.prismCssLoaded) {
       this.createTag(layout.shadowRoot, 'link', {
         rel: 'stylesheet',
-        href: '/@/prism.css',
+        href: '/@/css/prism.css',
       })
       this.prismCssLoaded = true
     }

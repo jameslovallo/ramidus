@@ -1,3 +1,4 @@
+// load all components
 const components = [
   'app-footer',
   'app-layout',
@@ -5,9 +6,9 @@ const components = [
   'spa-link',
   'spa-router',
 ]
+components.forEach((c) => import(`/@/components/${c}.js`))
 
 // fade in gracefully when components are loaded
-components.forEach((c) => import(`/@/components/${c}.js`))
-const settled = components.map((c) => customElements.whenDefined(c))
-await Promise.allSettled(settled)
+const isDefined = components.map((c) => customElements.whenDefined(c))
+await Promise.allSettled(isDefined)
 document.body.style.opacity = 1

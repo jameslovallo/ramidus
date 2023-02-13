@@ -42,7 +42,7 @@ ardi({
   },
   click(e) {
     e.preventDefault()
-    sessionStorage.removeItem('native-load')
+    sessionStorage.removeItem('spa-reload')
     this.setPage()
   },
 })
