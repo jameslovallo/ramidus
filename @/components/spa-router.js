@@ -5,28 +5,43 @@ ardi({
   template() {
     return html`<slot></slot>`
   },
-  setPage(text, path, firstLoad) {
-    if (text.includes('<!-- native-load -->')) {
+  setHead() {
+    fetch('/@/head.json')
+      .then((res) => res.json())
+      .then((data) => {
+        Object.keys(data).forEach((tagType) => {
+          data[tagType].forEach((el) => {
+            this.createTag(document.head, tagType, el)
+          })
+        })
+      })
+  },
+  setPage(doc, path, firstLoad) {
+    if (firstLoad) this.setHead()
+    if (doc.includes('<!-- native-load -->')) {
       if (!sessionStorage.getItem('native-load')) {
         sessionStorage.setItem('native-load', true)
         location = path
         return
       }
     } else sessionStorage.removeItem('native-load')
-    if (text.trim().startsWith('#')) {
-      import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
-        (marked) => {
-          this.innerHTML = marked.parse(
-            text
-              .split('\n')
-              .map((line) => line.trim())
-              .join('\n'),
-            { gfm: true, highlight: this.highlight() }
-          )
-        }
-      )
-    } else if (!firstLoad) this.innerHTML = text
+    if (doc.trim().startsWith('#')) {
+      this.handleMD(doc)
+    } else if (!firstLoad) this.innerHTML = doc
     this.setTitle()
+  },
+  handleMD(doc) {
+    import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
+      (marked) => {
+        this.innerHTML = marked.parse(
+          doc
+            .split('\n')
+            .map((line) => line.trim())
+            .join('\n'),
+          { gfm: true, highlight: this.highlight() }
+        )
+      }
+    )
   },
   highlight() {
     import('https://cdn.skypack.dev/prismjs').then((prism) => {
@@ -66,19 +81,6 @@ ardi({
     if (!sessionStorage[href]) sessionStorage[href] = data
   },
   ready() {
-    // setup the page
-    this.createTag(document.head, 'meta', {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    })
-    this.createTag(document.head, 'link', {
-      rel: 'stylesheet',
-      href: '/@/style.css',
-    })
-    this.createTag(document.head, 'link', {
-      rel: 'icon',
-      href: '/@/assets/favicon.svg',
-    })
     window.router = this
     this.setPage(layout.innerHTML, location.pathname, true)
     // history stuff
