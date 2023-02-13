@@ -1,10 +1,14 @@
+// define layout element
+window.layout = document.querySelector('app-layout')
+console.log(layout)
+
 // load all components
 const components = [
   'app-footer',
   'app-layout',
   'app-nav',
   'spa-link',
-  'spa-router',
+  'spa-slot',
 ]
 components.forEach((c) => import(`/@/components/${c}.js`))
 

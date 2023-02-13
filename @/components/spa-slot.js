@@ -1,7 +1,7 @@
 import ardi, { html } from 'https://unpkg.com/ardi'
 
 ardi({
-  component: 'spa-router',
+  component: 'spa-slot',
   template() {
     return html`<slot></slot>`
   },
@@ -32,6 +32,7 @@ ardi({
     this.setTitle()
   },
   handleMD(doc) {
+    console.log(doc)
     import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
       (marked) => {
         this.innerHTML = marked.parse(

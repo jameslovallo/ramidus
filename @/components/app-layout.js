@@ -14,14 +14,11 @@ ardi({
       </style>
       <app-nav></app-nav>
       <main>
-        <spa-router>
+        <spa-slot>
           <slot></slot>
-        </spa-router>
+        </spa-slot>
       </main>
       <app-footer></app-footer>
     `
-  },
-  ready() {
-    window.layout = this
   },
 })
