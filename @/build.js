@@ -4,18 +4,18 @@ const head = require('./head.json')
 
 const pageHead = `<head>
 <meta name="prebuilt" content="true">
-  ${Object.keys(head)
-    .map((tagType) =>
-      head[tagType]
-        .map(
-          (el) =>
-            `<${tagType} ${Object.keys(el)
-              .map((attr) => `${attr}="${el[attr]}"`)
-              .join(' ')}>`
-        )
-        .join('')
-    )
-    .join('')}
+${Object.keys(head)
+  .map((tagType) =>
+    head[tagType]
+      .map(
+        (el) =>
+          `<${tagType} ${Object.keys(el)
+            .map((attr) => `${attr}="${el[attr]}"`)
+            .join(' ')}>`
+      )
+      .join('')
+  )
+  .join('')}
 </head>`
 
 const getFile = (path) =>
@@ -37,18 +37,9 @@ function fromDir(startPath, filter) {
       fromDir(filename, filter) //recurse
     } else if (filename.endsWith(filter)) {
       const file = getFile(filename)
-      fs.writeFileSync(
-        filename,
-        `
-${pageHead}
-
-<body>
-${file}
-</body>`,
-        {
-          encoding: 'utf8',
-        }
-      )
+      fs.writeFileSync(filename, `${pageHead}<body>${file}</body>`, {
+        encoding: 'utf8',
+      })
     }
   }
 }

@@ -17,7 +17,8 @@ ardi({
       })
   },
   setPage(doc, path, firstLoad) {
-    if (firstLoad) this.setHead()
+    const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
+    if (firstLoad && !prebuilt) this.setHead()
     if (doc.includes('<!-- native-load -->')) {
       if (!sessionStorage.getItem('native-load')) {
         sessionStorage.setItem('native-load', true)
