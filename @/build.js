@@ -3,6 +3,7 @@ const fs = require('fs')
 const head = require('./head.json')
 
 const pageHead = `<head>
+<meta name="prebuilt" content="true">
   ${Object.keys(head)
     .map((tagType) =>
       head[tagType]
@@ -36,9 +37,18 @@ function fromDir(startPath, filter) {
       fromDir(filename, filter) //recurse
     } else if (filename.endsWith(filter)) {
       const file = getFile(filename)
-      fs.writeFileSync(filename, `${pageHead}<body>${file}</body>`, {
-        encoding: 'utf8',
-      })
+      fs.writeFileSync(
+        filename,
+        `
+${pageHead}
+
+<body>
+${file}
+</body>`,
+        {
+          encoding: 'utf8',
+        }
+      )
     }
   }
 }
