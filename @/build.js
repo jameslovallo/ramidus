@@ -39,7 +39,11 @@ function fromDir(startPath, filter) {
       const file = getFile(filename)
       fs.writeFileSync(
         filename,
-        `${pageHead}<body style="opacity: 0; transition: opacity .5s;">${file}</body>`,
+        pageHead +
+          file.replace(
+            '<body',
+            '<body style="opacity: 0; transition: opacity .5s;"'
+          ),
         {
           encoding: 'utf8',
         }
