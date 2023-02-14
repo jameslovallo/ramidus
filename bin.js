@@ -37,11 +37,9 @@ https
               rm('.gitignore')
               rm('./bin.js')
               rm('./package.json')
-              fs.writeFile(
-                './package.json',
-                pkgJSON,
-                (err) => err && console.error(err)
-              )
+              fs.writeFile('./package.json', pkgJSON, function (err) {
+                err && console.error(err)
+              })
             })
           } catch (err) {
             err && console.log(err)
