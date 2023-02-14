@@ -1,4 +1,4 @@
-import ardi, { html } from '/@/ardi.js'
+import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
   component: 'app-layout',

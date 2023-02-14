@@ -1,4 +1,4 @@
-import ardi, { html } from '/@/ardi.js'
+import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
   component: 'spa-slot',
@@ -32,23 +32,21 @@ ardi({
     this.setTitle()
   },
   handleMD(doc) {
-    import('https://unpkg.com/marked@4.2.12/lib/marked.esm.js').then(
-      (marked) => {
-        this.innerHTML = marked.parse(
-          doc
-            .split('\n')
-            .map((line) => line.trim())
-            .join('\n'),
-          {
-            gfm: true,
-            highlight: doc.includes('```') ? this.highlight() : undefined,
-          }
-        )
-      }
-    )
+    import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
+      this.innerHTML = marked.parse(
+        doc
+          .split('\n')
+          .map((line) => line.trim())
+          .join('\n'),
+        {
+          gfm: true,
+          highlight: doc.includes('```') ? this.highlight() : undefined,
+        }
+      )
+    })
   },
   highlight() {
-    import('https://cdn.skypack.dev/prismjs').then((prism) => {
+    import('//cdn.skypack.dev/prismjs').then((prism) => {
       prism.highlightAllUnder(this)
     })
     if (!this.prismCssLoaded) {
