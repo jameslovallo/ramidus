@@ -6,6 +6,13 @@ import path from 'path'
 
 const zip = './ramidus.zip'
 
+const pkgJSON = `{
+  "scripts": {
+    "build": "node @/build.js",
+    "dev": "npx http-server"
+  }
+}`
+
 const rm = (path) =>
   fs.unlink(path, function (err) {
     err && console.log(err)
@@ -35,6 +42,11 @@ https
                   rm('.gitignore')
                   rm('./bin.js')
                   rm('./package.json')
+                  fs.writeFile(
+                    './package.json',
+                    pkgJSON,
+                    (err) => err && console.error(err)
+                  )
                 })
               }
             })
