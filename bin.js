@@ -15,7 +15,7 @@ const file = fs.createWriteStream(zip)
 
 https
   .get(
-    'https://codeload.github.com/jameslovallo/Custom-Element-SPA/zip/refs/heads/main',
+    'https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main',
     (response) => {
       response.pipe(file)
       file.on('finish', () => {
@@ -32,6 +32,7 @@ https
                   err && console.log(err)
                   fs.rm(dir, { recursive: true })
                   fs.rm('./node_modules', { recursive: true })
+                  rm('.gitignore')
                   rm('./bin.js')
                   rm('./package.json')
                 })
