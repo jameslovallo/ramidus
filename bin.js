@@ -40,7 +40,6 @@ https
             fs.cp('./ramidus-main', './', { recursive: true }, function (err) {
               err && console.log(err)
               deleteFolder('./ramidus-main')
-              deleteFolder('./node_modules')
               deleteFile('.gitignore')
               deleteFile('./bin.js')
               deleteFile('./package.json')
