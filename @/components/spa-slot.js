@@ -39,7 +39,10 @@ ardi({
             .split('\n')
             .map((line) => line.trim())
             .join('\n'),
-          { gfm: true, highlight: this.highlight() }
+          {
+            gfm: true,
+            highlight: doc.includes('```') ? this.highlight() : undefined,
+          }
         )
       }
     )
