@@ -1,11 +1,9 @@
 import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
+  { href: '/', label: html`<img src="/@/assets/ardi.svg" />` },
   { href: '/docs', label: 'Docs' },
   { href: '/demo', label: 'Demo' },
-  { href: '/contact', label: 'Contact' },
 ]
 
 ardi({
@@ -36,11 +34,16 @@ ardi({
     }
     spa-link:first-of-type {
       margin-right: auto;
+      padding: .5rem 0;
+    }
+    spa-link:first-of-type img {
+      width:40px;
     }
     spa-link::part(link) {
+      align-items: center;
       color: inherit;
-      display: inline-block;
-      padding: 1rem 0;
+      display: flex;
+      height: 100%;
       text-decoration: none;
     }
   `,

@@ -9,7 +9,7 @@ const zip = './ramidus.zip'
 const pkgJSON = `{
   "scripts": {
     "build": "node @/build.js",
-    "dev": "npx http-server"
+    "dev": "npx http-server -o"
   }
 }`
 
