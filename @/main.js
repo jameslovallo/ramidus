@@ -3,6 +3,7 @@ const components = [
   'app-footer',
   'app-layout',
   'app-nav',
+  'code-demo',
   'spa-link',
   'spa-slot',
 ]
