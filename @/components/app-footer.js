@@ -1,4 +1,4 @@
-import ardi, { html } from 'https://unpkg.com/ardi'
+import ardi, { html } from '/@/ardi.js'
 
 ardi({
   component: 'app-footer',

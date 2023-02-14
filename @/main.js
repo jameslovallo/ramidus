@@ -1,6 +1,3 @@
-// define layout element
-window.layout = document.querySelector('app-layout')
-
 // load all components
 const components = [
   'app-footer',

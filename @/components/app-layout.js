@@ -1,7 +1,8 @@
-import ardi, { html } from 'https://unpkg.com/ardi'
+import ardi, { html } from '/@/ardi.js'
 
 ardi({
   component: 'app-layout',
+  extends: [HTMLBodyElement, 'body'],
   state: () => ({ pageData: '' }),
   template() {
     return html`

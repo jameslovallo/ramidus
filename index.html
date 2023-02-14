@@ -1,7 +1,8 @@
 <script src="/@/main.js" type="module"></script>
 
 <!-- prettier-ignore -->
-<app-layout>
+<body is="app-layout">
+  <!-- md -->
   # Ardi SPA
 
   Hi there. If you've stumbled on this page, you're probably looking for a
@@ -11,10 +12,12 @@
 
   ## Features
 
-  - Familiar, modern app structure, similar to Next, Nuxt or SvelteKit
-  - Write pages in GitHub-flavored markdown or html using vanilla routing. This page is written in markdown, actually.
+  - Modern app structure, similar to Next, Nuxt or SvelteKit
   - SPA routing using `spa-slot` and `spa-link` elements.
+  - Create layouts that are shared across multiple pages.
   - Specify if a page should reload the app using a `<!--spa-reload-->` comment.
-  - No building or tooling required. This project runs right in the browser, though there is an optional build step to make it so the page loads gracefully after the global components have loaded.
+  - Write pages in HTML or GitHub-flavored markdown.
+  - 100% vanilla folder structure and routing.
+  - No building or tooling required. This project runs right in the browser, though there is an optional build step to make the first page load more gracefully.
   - Nothing is hidden behind the scenes. The source for all core components and the optional build script is included in the project and can be modified to your liking.
-</app-layout>
+</body>

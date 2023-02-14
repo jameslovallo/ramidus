@@ -1,4 +1,4 @@
-import ardi, { html } from 'https://unpkg.com/ardi'
+import ardi, { html } from '/@/ardi.js'
 
 ardi({
   component: 'spa-link',
@@ -24,16 +24,15 @@ ardi({
       fetch(this.pagePath())
         .then((res) => res.text())
         .then((html) => {
-          const tag = layout.tagName.toLowerCase()
-          this.pageData = html.split(`<${tag}>`)[1].split(`</${tag}>`)[0]
+          this.pageData = html.split(/<body.+>/g)[1].split(`</body>`)[0]
           setPage && this.setPage()
         })
     }
   },
   setPage() {
     if (this.pageData) {
-      router.setPage(this.pageData, this.href)
-      router.pushHistory(this.href, this.pageData)
+      appSlot.setPage(this.pageData, this.href)
+      appSlot.pushHistory(this.href, this.pageData)
     } else this.getPage(true)
   },
   hover(e) {

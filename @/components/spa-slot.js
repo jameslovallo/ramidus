@@ -1,4 +1,4 @@
-import ardi, { html } from 'https://unpkg.com/ardi'
+import ardi, { html } from '/@/ardi.js'
 
 ardi({
   component: 'spa-slot',
@@ -26,7 +26,7 @@ ardi({
         return
       }
     } else sessionStorage.removeItem('spa-reload')
-    if (doc.trim().startsWith('#')) {
+    if (doc.includes('<!-- md -->')) {
       this.handleMD(doc)
     } else if (!firstLoad) this.innerHTML = doc
     this.setTitle()
@@ -49,10 +49,10 @@ ardi({
   },
   highlight() {
     import('https://cdn.skypack.dev/prismjs').then((prism) => {
-      prism.highlightAllUnder(router)
+      prism.highlightAllUnder(this)
     })
     if (!this.prismCssLoaded) {
-      this.createTag(layout.shadowRoot, 'link', {
+      this.createTag(document.body.shadowRoot, 'link', {
         rel: 'stylesheet',
         href: '/@/css/prism.css',
       })
@@ -85,10 +85,10 @@ ardi({
     if (!sessionStorage[href]) sessionStorage[href] = data
   },
   ready() {
-    window.router = this
-    this.setPage(layout.innerHTML, location.pathname, true)
+    window.appSlot = this
+    this.setPage(document.body.innerHTML, location.pathname, true)
     // history stuff
-    this.pushHistory(location.pathname, layout.innerHTML)
+    this.pushHistory(location.pathname, document.body.innerHTML)
     addEventListener('popstate', (e) => {
       this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
     })
