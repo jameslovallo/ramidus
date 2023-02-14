@@ -42,7 +42,6 @@ https
               deleteFolder('./ramidus-main')
               deleteFile('.gitignore')
               deleteFile('./bin.js')
-              deleteFile('./package.json')
               fs.writeFile('./package.json', pkgJSON, function (err) {
                 err && console.error(err)
               })
