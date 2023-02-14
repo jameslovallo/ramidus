@@ -13,10 +13,17 @@ const pkgJSON = `{
   }
 }`
 
-const rm = (path) =>
+const deleteFile = (path) => {
   fs.unlink(path, function (err) {
     err && console.log(err)
   })
+}
+
+const deleteFolder = (path) => {
+  fs.rm(path, { recursive: true }, function (err) {
+    err && console.log(err)
+  })
+}
 
 const file = fs.createWriteStream(zip)
 
@@ -29,14 +36,14 @@ https
         file.close(async () => {
           try {
             await extract(zip, { dir: path.resolve('./') })
-            rm(zip)
+            deleteFile(zip)
             fs.cp('./ramidus-main', './', { recursive: true }, function (err) {
               err && console.log(err)
-              fs.rm('./ramidus-main', { recursive: true })
-              fs.rm('./node_modules', { recursive: true })
-              rm('.gitignore')
-              rm('./bin.js')
-              rm('./package.json')
+              deleteFolder('./ramidus-main')
+              deleteFolder('./node_modules')
+              deleteFile('.gitignore')
+              deleteFile('./bin.js')
+              deleteFile('./package.json')
               fs.writeFile('./package.json', pkgJSON, function (err) {
                 err && console.error(err)
               })
