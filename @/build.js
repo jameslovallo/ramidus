@@ -1,6 +1,6 @@
-const path = require('path')
-const fs = require('fs')
-const head = require('./head.json')
+import fs from 'fs'
+import path from 'path'
+import head from './head.json' assert { type: 'json' }
 
 const pageHead = `<head>
 <meta name="prebuilt" content="true">
