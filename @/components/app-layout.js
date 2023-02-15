@@ -7,6 +7,7 @@ ardi({
   template() {
     return html`
       <style>
+        @import '/@/css/style.css';
         main {
           margin: 0 auto;
           max-width: 70ch;

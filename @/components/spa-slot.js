@@ -26,23 +26,24 @@ ardi({
         return
       }
     } else sessionStorage.removeItem('spa-reload')
-    if (doc.includes('<!-- md -->')) {
+    if (
+      (firstLoad && document.body.lang === 'md') ||
+      doc.startsWith('<!-- md -->')
+    ) {
       this.handleMD(doc)
-    } else if (!firstLoad) this.innerHTML = doc
+      document.body.removeAttribute('lang')
+    } else this.innerHTML = doc
     this.setTitle()
   },
   handleMD(doc) {
     import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
-      this.innerHTML = marked.parse(
-        doc
-          .split('\n')
-          .map((line) => line.trim())
-          .join('\n'),
-        {
-          gfm: true,
-          highlight: doc.includes('```') ? this.highlight() : undefined,
-        }
-      )
+      this.innerHTML = marked.parse(doc, {
+        gfm: true,
+        highlight:
+          doc.includes('```') || doc.includes('language-')
+            ? this.highlight()
+            : undefined,
+      })
     })
   },
   highlight() {

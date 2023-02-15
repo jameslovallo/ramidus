@@ -1,4 +1,5 @@
 :root {
+  --border: rgba(125, 125, 125, 0.5);
   --surface: rgba(125, 125, 125, 0.1);
   font-family: sans-serif;
   line-height: 1.5;
@@ -12,4 +13,37 @@
 
 body {
   margin: 0;
+}
+
+.tree {
+  font-size: 14px;
+  line-height: 2em;
+  list-style: none;
+  padding-inline-start: 12px;
+}
+
+.tree span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--border);
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0.5rem;
+}
+
+[class*='language-'] {
+  font-size: 13px;
 }

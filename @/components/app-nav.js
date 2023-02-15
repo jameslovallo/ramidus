@@ -34,10 +34,10 @@ ardi({
     }
     spa-link:first-of-type {
       margin-right: auto;
-      padding: .5rem 0;
+      padding: .75rem 0;
     }
     spa-link:first-of-type img {
-      width:40px;
+      width:32px;
     }
     spa-link::part(link) {
       align-items: center;
