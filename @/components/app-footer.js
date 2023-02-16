@@ -3,13 +3,12 @@ import ardi, { html } from '//cdn.skypack.dev/ardi'
 ardi({
   tag: 'app-footer',
   template() {
-    const year = new Date().getFullYear()
     return html`
       <style>
         ${this.css}
       </style>
       <footer>
-        <p>© ${year} James Lovallo</p>
+        <p>Made with <a href="ardi.netlify.app">Ardi</a></p>
       </footer>
     `
   },
