@@ -8,7 +8,7 @@ ardi({
         ${this.css}
       </style>
       <footer>
-        <p>Made with <a href="ardi.netlify.app">Ardi</a></p>
+        <p>Made with <a href="https://ardi.netlify.app">Ardi</a></p>
       </footer>
     `
   },
