@@ -1,7 +1,7 @@
 import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
-  component: 'app-footer',
+  tag: 'app-footer',
   template() {
     const year = new Date().getFullYear()
     return html`

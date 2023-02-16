@@ -7,7 +7,7 @@ const nav = [
 ]
 
 ardi({
-  component: 'app-nav',
+  tag: 'app-nav',
   template() {
     return html`
       <style>

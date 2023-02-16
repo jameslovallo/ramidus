@@ -1,7 +1,7 @@
 import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
-  component: 'spa-slot',
+  tag: 'spa-slot',
   template() {
     return html`<slot></slot>`
   },

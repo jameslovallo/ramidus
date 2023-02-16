@@ -1,7 +1,7 @@
 import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
-  component: 'spa-link',
+  tag: 'spa-link',
   props: { href: [String, '/home.html'] },
   state: () => ({ pageData: '' }),
   template() {
