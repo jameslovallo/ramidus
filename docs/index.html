@@ -1,5 +1,3 @@
-<script src="/@/main.js" type="module"></script>
-
 <!-- prettier-ignore -->
 <body is="app-layout" lang="md">
 
@@ -82,13 +80,18 @@ Ramidus is a runtime framework and is therefore structured to use 100% vanilla r
 
 Writing pages in Ramidus is just like writing pages in a vanilla site, with one small exception: Ramidus has templates! There are two things you must include in every page to make this work.
 
-1. A script tag loading `/@/main.js`
-2. A body tag with the `is` attribute loading a custom element. You can use markdown by adding `lang="md"` to the body.
+1. A body tag with the `is` attribute loading a custom element. You can use markdown by adding `lang="md"` to the body.
+2. A script tag loading `/@/main.js`
 
 ```html
-<script src="/@/main.js" type="module"></script>
+&lt;body is="app-layout" lang="md"&gt;
 
-&lt;body is="app-layout" lang="md"&gt;...&lt;/body&gt;
+# Hello World
+This site is written in markdown with Ramidus.
+
+<script src="/@/main.js" type="module"></script>
+&lt;/body&gt;
 ```
 
+<script src="/@/main.js" type="module"></script>
 </body>

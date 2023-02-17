@@ -2,6 +2,14 @@ import fs from 'fs'
 import path from 'path'
 import head from './head.json' assert { type: 'json' }
 
+const doc = (head, body) => `
+<!DOCTYPE html>
+<html lang="en-us">
+${head}
+${body}
+</html>
+`
+
 const pageHead = `<head>
 <meta name="prebuilt" content="true">
 ${Object.keys(head)
@@ -37,17 +45,13 @@ function fromDir(startPath, filter) {
       fromDir(filename, filter) //recurse
     } else if (filename.endsWith(filter)) {
       const file = getFile(filename)
-      fs.writeFileSync(
-        filename,
-        pageHead +
-          file.replace(
-            '<body',
-            '<body style="opacity: 0; transition: opacity .5s;"'
-          ),
-        {
-          encoding: 'utf8',
-        }
+      const body = file.replace(
+        '<body',
+        '<body style="opacity: 0; transition: opacity .5s;"'
       )
+      fs.writeFileSync(filename, doc(pageHead, body), {
+        encoding: 'utf8',
+      })
     }
   }
 }
