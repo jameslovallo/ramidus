@@ -20,7 +20,9 @@ Ramidus is a SPA framework built with, and designed for, custom elements.
 
 Setup is easy and no tooling is required. You can scaffold your project using `npx` or simply download [this zip file](https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main).
 
-<pre>npx ramidus@latest && npm run dev</pre>
+```sh
+npx ramidus@latest && npm run dev
+```
 
 ## Project Structure
 
@@ -81,21 +83,20 @@ Ramidus is a runtime framework and is therefore structured to use 100% vanilla r
 Writing pages in Ramidus is just like writing pages in a vanilla site, with one small exception: Ramidus has templates! There are two things you must include in every page to make this work.
 
 1. A script tag loading `/@/main.js`
-2. A body tag with the `is` attribute loading an appropriate template element.
+2. A body tag with the `is` attribute loading a custom element.
 
-The next section will address how to create templates.
+```html
+<script src="/@/main.js" type="module"></script>
 
-<pre>
-<code class="language-html">&lt;script src="/@/main.js" type="module"&gt;&lt;/script&gt;
+&lt;body is="app-layout">...&lt;/body>
+```
 
-&lt;body is="app-layout"&gt;...&lt;/body&gt;
-</code>
-</pre>
+You can write pages in markdown by adding `lang="md"` to the body.
 
-You may also write pages in markdown by adding `lang="md"` to the body.
+```html
+<script src="/@/main.js" type="module"></script>
 
-<pre>
-<code class="language-html">&lt;body lang="md" is="app-layout"&gt;...&lt;/body&gt;</code>
-</pre>
+&lt;body lang="md" is="app-layout">...&lt;/body>
+```
 
 </body>

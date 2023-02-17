@@ -36,6 +36,11 @@ ardi({
     this.setTitle()
   },
   handleMD(doc) {
+    doc = doc
+      .replaceAll('&amp;', '&')
+      .replaceAll('&lt;', '<')
+      .replaceAll('&gt;', '>')
+    console.log(doc)
     import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
       this.innerHTML = marked.parse(doc, {
         gfm: true,
