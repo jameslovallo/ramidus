@@ -83,15 +83,7 @@ Ramidus is a runtime framework and is therefore structured to use 100% vanilla r
 Writing pages in Ramidus is just like writing pages in a vanilla site, with one small exception: Ramidus has templates! There are two things you must include in every page to make this work.
 
 1. A script tag loading `/@/main.js`
-2. A body tag with the `is` attribute loading a custom element.
-
-```html
-<script src="/@/main.js" type="module"></script>
-
-&lt;body is="app-layout"&gt;...&lt;/body&gt;
-```
-
-You can write pages in markdown by adding `lang="md"` to the body.
+2. A body tag with the `is` attribute loading a custom element. You can use markdown by adding `lang="md"` to the body.
 
 ```html
 <script src="/@/main.js" type="module"></script>
