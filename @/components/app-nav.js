@@ -1,7 +1,6 @@
 import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 const nav = [
-  { href: '/', label: html`<img src="/@/assets/ardi.svg" />` },
   { href: '/', label: 'Home' },
   { href: '/docs', label: 'Docs' },
 ]
@@ -14,6 +13,12 @@ ardi({
         ${this.css}
       </style>
       <nav>
+        <spa-link href="/">
+          <img
+            src="/@/assets/ardi.svg"
+            alt="Ardi Logo, a cute monkey in a spacesuit."
+          />
+        </spa-link>
         ${nav.map(
           (page) => html`<spa-link href=${page.href}>${page.label}</spa-link>`
         )}
