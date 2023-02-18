@@ -30,10 +30,10 @@ const file = fs.createWriteStream(zip)
 https
   .get(
     'https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main',
-    (response) => {
+    function (response) {
       response.pipe(file)
-      file.on('finish', () => {
-        file.close(async () => {
+      file.on('finish', function () {
+        file.close(async function () {
           try {
             await extract(zip, { dir: path.resolve('./') })
             deleteFile(zip)
@@ -53,6 +53,6 @@ https
       })
     }
   )
-  .on('error', (err) => {
+  .on('error', function (err) {
     rm(zip)
   })
