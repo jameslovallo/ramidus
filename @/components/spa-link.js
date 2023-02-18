@@ -9,7 +9,7 @@ ardi({
       <a
         part="link"
         href=${this.href}
-        @mouseover=${(e) => this.hover(e)}
+        @mouseover=${this.href.startsWith('./#') ? null : (e) => this.hover(e)}
         @click=${(e) => this.click(e)}
       >
         <slot></slot>
@@ -43,7 +43,12 @@ ardi({
   },
   click(e) {
     e.preventDefault()
-    sessionStorage.removeItem('spa-reload')
-    this.setPage()
+    if (this.href.startsWith('#')) {
+      const heading = document.body.shadowRoot.querySelector(this.href)
+      window.scrollTo(0, heading.offsetTop - 48)
+    } else {
+      sessionStorage.removeItem('spa-reload')
+      this.setPage()
+    }
   },
 })

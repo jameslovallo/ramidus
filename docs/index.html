@@ -7,9 +7,9 @@ Ramidus is a SPA framework built with, and designed for, custom elements.
 
 ## Table of Contents
 
-- [Getting Started]()
-- [Project Structure]()
-- [Pages]()
+- <spa-link href="#getting-started">Getting Started</spa-link>
+- <spa-link href="#project-structure">Project Structure</spa-link>
+- <spa-link href="#pages">Pages</spa-link>
 - [Layouts]()
 - [Components]()
 - [Deployment]()
@@ -26,44 +26,22 @@ npx ramidus@latest && npm run dev
 
 Ramidus is a runtime framework and is therefore structured to use 100% vanilla routing, i.e. `/docs/index.html`. The "@" folder contains everything relevant to your application like components, assets and layouts. "@" is short for "app." This convention keeps the app folder first alphabetically so you don't lose it in your content.
 
-<ul class="tree" style="padding-inline-start: 0;">
-	<li>
-		<span><img src="/@/assets/folder-home.svg">@</span>
-	</li>
-	<li>
-		<ul class="tree">
-			<li>
-				<span><img src="/@/assets/folder-assets.svg">assets</span>
-			</li>
-			<li>
-				<span><img src="/@/assets/folder-components.svg">components</span>
-			</li>
-			<li>
-				<span><img src="/@/assets/folder-css.svg">css</span>
-			</li>
-			<li>
-				<span><img src="/@/assets/file-js.svg">build.js</span>
-			</li>
-			<li>
-				<span><img src="/@/assets/file-js.svg">main.js</span>
-			</li>
-			<li>
-				<span><img src="/@/assets/file-json.svg">head.json</span>
-			</li>
-		</ul>
-	</li>
-	<li>
-		<span><img src="/@/assets/folder.svg">docs</span>
-		<ul class="tree">
-			<li>
-				<span><img src="/@/assets/file-html.svg">index.html</span>
-			</li>
-		</ul>
-	</li>
-	<li>
-		<span><img src="/@/assets/file-html.svg">index.html</span>
-	</li>
-</ul>
+<div class="tree">
+
+<span><img src="/@/assets/folder-home.svg">@</span>
+- <span><img src="/@/assets/folder-assets.svg">assets</span>
+- <span><img src="/@/assets/folder-components.svg">components</span>
+- <span><img src="/@/assets/folder-css.svg">css</span>
+- <span><img src="/@/assets/file-js.svg">build.js</span>
+- <span><img src="/@/assets/file-js.svg">main.js</span>
+- <span><img src="/@/assets/file-json.svg">head.json</span>
+
+<span><img src="/@/assets/folder.svg">docs</span>
+- <span><img src="/@/assets/file-html.svg">index.html</span>
+
+<span><img src="/@/assets/file-html.svg">index.html</span>
+
+</div>
 
 ### @ Folder Contents
 
@@ -87,9 +65,11 @@ Writing pages in Ramidus is just like writing pages in a vanilla site, with one 
 &lt;body is="app-layout" lang="md"&gt;
 
 # Hello World
+
 This site is written in markdown with Ramidus.
 
 <script src="/@/main.js" type="module"></script>
+
 &lt;/body&gt;
 ```
 

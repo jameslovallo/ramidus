@@ -14,6 +14,7 @@
 html,
 body {
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,6 +24,14 @@ body {
 .tree {
   font-size: 14px;
   line-height: 2em;
+}
+
+.tree p,
+.tree ul {
+  margin: 0;
+}
+
+.tree ul {
   list-style: none;
   padding-inline-start: 12px;
 }
