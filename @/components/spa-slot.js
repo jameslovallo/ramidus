@@ -33,7 +33,19 @@ ardi({
       this.handleMD(doc)
       document.body.removeAttribute('lang')
     } else this.innerHTML = doc
-    this.setTitle()
+    this.handleTitle()
+  },
+  handleTitle(doc) {
+    const mdH1 = doc.match(/# .+/)[0].replace('# ', '')
+    const htmlH1 = doc
+      .match(/<h1>.+<\/h1>/)[0]
+      .replace('<h1>', '')
+      .replace('</h1>', '')
+    const htmlTitle = doc
+      .match(/<title>.+<\/title>/)[0]
+      .replace('<title>', '')
+      .replace('</title>', '')
+    document.title = htmlTitle || htmlH1 || mdH1
   },
   handleMD(doc) {
     doc = doc
@@ -61,16 +73,6 @@ ardi({
       })
       this.prismCssLoaded = true
     }
-  },
-  setTitle() {
-    let children = this.children
-    if (children.length === 1 && children[0].tagName === 'SLOT') {
-      children = this.children[0].assignedElements()
-    }
-    const titleEl = [...children].filter((el) =>
-      ['TITLE', 'H1'].includes(el.tagName)
-    )[0]
-    if (titleEl) document.title = titleEl.innerText
   },
   createTag(target, type, attrs) {
     const tag = document.createElement(type)
