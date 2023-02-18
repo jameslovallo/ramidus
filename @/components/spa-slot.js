@@ -31,9 +31,9 @@ ardi({
       doc.startsWith('<!-- md -->')
     ) {
       this.handleMD(doc)
-      document.body.removeAttribute('lang')
     } else this.innerHTML = doc
     this.handleTitle(doc)
+    !firstLoad && document.body.removeAttribute('lang')
   },
   handleTitle(doc) {
     let mdH1 = doc.match(/# .+/)
@@ -91,7 +91,12 @@ ardi({
     window.appSlot = this
     this.setPage(document.body.innerHTML, location.pathname, true)
     // history stuff
-    this.pushHistory(location.pathname, document.body.innerHTML)
+    const firstPageIsMD = document.body.lang === 'md'
+    this.pushHistory(
+      location.pathname,
+      (firstPageIsMD ? '<!-- md -->' : '') + document.body.innerHTML
+    )
+    firstPageIsMD && document.body.removeAttribute('lang')
     addEventListener('popstate', (e) => {
       this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
     })
