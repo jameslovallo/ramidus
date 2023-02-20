@@ -37,6 +37,10 @@ h2 {
   padding-bottom: 1rem;
 }
 
+h3 {
+  margin-top: 2em;
+}
+
 .tree {
   font-size: 14px;
   line-height: 2em;
@@ -76,4 +80,11 @@ td {
 
 [class*='language-'] {
   font-size: 13px;
+}
+
+code:not([class^='language']) {
+  background: var(--border);
+  border-radius: 2px;
+  font-size: 14px;
+  padding: 2px 4px;
 }

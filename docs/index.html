@@ -11,8 +11,8 @@ Ramidus is a SPA framework built with, and designed for, custom elements.
 - <spa-link href="#project-structure">Project Structure</spa-link>
 - <spa-link href="#pages">Pages</spa-link>
 - <spa-link href="#layouts">Layouts</spa-link>
-- [Components]()
-- [Deployment]()
+- <spa-link href="#components">Components</spa-link>
+- <spa-link href="#deployment">Deployment</spa-link>
 
 ## Getting Started
 
@@ -102,6 +102,10 @@ A layout is a custom element containing the site's shared markup. Layouts should
 
 <app-footer></app-footer>
 ```
+
+## Components
+
+Global components live in `/@/components` and are registered in `/@/main.js`. These components will be loaded before the page is displayed, preventing [Cumulative Layout Shift (CLS)](https://web.dev/cls/). Ramidus's core components are built with [Ardi](ardi.netlify.app), but you can use any custom element framework you like (or none). 
 
 <script src="/@/main.js" type="module"></script>
 </body>
