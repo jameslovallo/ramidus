@@ -44,7 +44,7 @@ ardi({
   click(e) {
     e.preventDefault()
     if (this.href.startsWith('#')) {
-      const heading = document.body.shadowRoot.querySelector(this.href)
+      const heading = document.body.querySelector(this.href)
       window.scrollTo(0, heading.offsetTop - 48)
     } else {
       sessionStorage.removeItem('spa-reload')

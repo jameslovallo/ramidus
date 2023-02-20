@@ -31,7 +31,7 @@ ardi({
       doc.startsWith('<!-- md -->')
     ) {
       this.handleMD(doc)
-    } else this.innerHTML = doc
+    } else document.body.innerHTML = doc
     this.handleTitle(doc)
     !firstLoad && document.body.removeAttribute('lang')
   },
@@ -51,7 +51,7 @@ ardi({
       .replaceAll('&lt;', '<')
       .replaceAll('&gt;', '>')
     import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
-      this.innerHTML = marked.parse(doc, {
+      document.body.innerHTML = marked.parse(doc, {
         gfm: true,
         highlight:
           doc.includes('```') || doc.includes('language-')
@@ -62,10 +62,10 @@ ardi({
   },
   highlight() {
     import('//cdn.skypack.dev/prismjs').then((prism) => {
-      prism.highlightAllUnder(this)
+      prism.highlightAllUnder(document.body)
     })
     if (!this.prismCssLoaded) {
-      this.createTag(document.body.shadowRoot, 'link', {
+      this.createTag(document.head, 'link', {
         rel: 'stylesheet',
         href: '/@/css/prism.css',
       })
