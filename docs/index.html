@@ -105,7 +105,20 @@ A layout is a custom element containing the site's shared markup. Layouts should
 
 ## Components
 
-Global components live in `/@/components` and are registered in `/@/main.js`. These components will be loaded before the page is displayed, preventing [Cumulative Layout Shift (CLS)](https://web.dev/cls/). Ramidus's core components are built with [Ardi](ardi.netlify.app), but you can use any custom element framework you like (or none). 
+Global components live in `/@/components` and are registered in `/@/main.js`. Ramidus's core components are built with [Ardi](ardi.netlify.app), but you can use any custom element framework you like (or none).
+
+## Deployment
+
+No build step is required to deploy this site: you can run this project from a simple web server. There is an optional build step that provides a few benefits. 
+
+### Benefits of Bulding
+1. `&lt;head&gt;` is added to each page so it doesn't need to be generated when the page loads.
+2. The page gracefully fades in after globally-registered components have loaded, preventing [Cumulative Layout Shift (CLS)](https://web.dev/cls/).
+
+### Deploying to Netlify, Vercel or Similar
+| Build Command | Publish Directory |
+|---|---|
+| npm run build | dist |
 
 <script src="/@/main.js" type="module"></script>
 </body>
