@@ -1,6 +1,7 @@
+import { exec } from 'child_process'
 import fs from 'fs'
 import path from 'path'
-import head from './head.json' assert { type: 'json' }
+import headJSON from './head.json' assert { type: 'json' }
 
 const doc = (head, body) => `
 <!DOCTYPE html>
@@ -10,11 +11,11 @@ ${body}
 </html>
 `
 
-const pageHead = `<head>
+const head = `<head>
 <meta name="prebuilt" content="true">
-${Object.keys(head)
+${Object.keys(headJSON)
   .map((tagType) =>
-    head[tagType]
+    headJSON[tagType]
       .map(
         (el) =>
           `<${tagType} ${Object.keys(el)
@@ -31,7 +32,7 @@ const getFile = (path) =>
     err ? console.log(err) : data
   )
 
-function fromDir(startPath, filter) {
+function buildHTML(startPath, filter) {
   if (!fs.existsSync(startPath)) {
     console.log('directory does not exist: ', startPath)
     return
@@ -42,18 +43,43 @@ function fromDir(startPath, filter) {
     var filename = path.join(startPath, files[i])
     var stat = fs.lstatSync(filename)
     if (stat.isDirectory()) {
-      fromDir(filename, filter) //recurse
+      buildHTML(filename, filter) //recurse
     } else if (filename.endsWith(filter)) {
       const file = getFile(filename)
       const body = file.replace(
         '<body',
         '<body style="opacity: 0; transition: opacity .5s;"'
       )
-      fs.writeFileSync(filename, doc(pageHead, body), {
+      fs.writeFileSync(filename, doc(head, body), {
         encoding: 'utf8',
       })
     }
   }
 }
 
-fromDir('./', '.html')
+const excludes = [
+  '.git',
+  '.gitignore',
+  '@/build.js',
+  'bin.js',
+  'node_modules',
+  'package-lock.json',
+  'package.json',
+]
+
+exec(
+  `rsync -a ${excludes.map((e) => `--exclude "${e}"`).join(' ')} ./ ./dist/`,
+  (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`)
+      return
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`)
+      return
+    }
+    console.log(`stdout: ${stdout}`)
+  }
+)
+
+buildHTML('./dist/', '.html')
