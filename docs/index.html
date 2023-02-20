@@ -80,41 +80,27 @@ This site is written in markdown.
 
 ### Linking to Pages
 
-To enable SPA-style page loading, internal links should be written with the `<spa-link>` element, like this:
+To enable SPA-style page loading, internal links should be handled using the `<spa-link>` element. Using a hash link will scroll to the element with the same ID.
+
 ```html
 <spa-link href="/about">About Us</spa-link>
-```
-
-You can also use `<spa-link>` to scroll the page to an element with and ID using a hash link, like this:
-
-```html
 <spa-link href="#getting-started">Getting Started</spa-link>
 ```
 
 ## Layouts
 
-A layout is a custom element containing the site's shared markup and a slot for the page content. A layout should include the `<spa-root>` element with a nested `<slot>`. Here is the default layout included with Ramidus. Notice that the layout can contain any number of other components. This example is written with Ardi, but you can write it with any framework (or none).
+A layout is a custom element containing the site's shared markup. Layouts should include the `<spa-root>` element with a nested `<slot>` to load the page's content. Here is the default layout included with Ramidus. Notice that the layout can contain any number of other components.
 
-```js
-// /@/components/app-layout.
+```html
+<app-nav></app-nav>
 
-import ardi, { html } from '//cdn.skypack.dev/ardi'
+<main>
+  <spa-root>
+    <slot></slot>
+  </spa-root>
+</main>
 
-ardi({
-  tag: 'app-layout',
-  extends: [HTMLBodyElement, 'body'],
-  template() {
-    return html`
-      <app-nav></app-nav>
-      <main>
-        <spa-root>
-          <slot></slot>
-        </spa-root>
-      </main>
-      <app-footer></app-footer>
-    `
-  },
-})
+<app-footer></app-footer>
 ```
 
 <script src="/@/main.js" type="module"></script>
