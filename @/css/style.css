@@ -21,13 +21,20 @@ body {
   margin: 0;
 }
 
-h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
 h2 {
   border-bottom: 1px solid var(--border);
-  font-weight: normal;
+  line-height: 1;
   margin-bottom: 1rem;
   margin-top: 2em;
-  padding-block: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .tree {
