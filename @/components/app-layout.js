@@ -3,7 +3,6 @@ import ardi, { html } from '//cdn.skypack.dev/ardi'
 ardi({
   tag: 'app-layout',
   extends: [HTMLBodyElement, 'body'],
-  state: () => ({ pageData: '' }),
   template() {
     return html`
       <style>

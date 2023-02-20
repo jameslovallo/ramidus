@@ -10,7 +10,7 @@ Ramidus is a SPA framework built with, and designed for, custom elements.
 - <spa-link href="#getting-started">Getting Started</spa-link>
 - <spa-link href="#project-structure">Project Structure</spa-link>
 - <spa-link href="#pages">Pages</spa-link>
-- [Layouts]()
+- <spa-link href="#layouts">Layouts</spa-link>
 - [Components]()
 - [Deployment]()
 
@@ -24,7 +24,7 @@ npx ramidus@latest && npm run dev
 
 ## Project Structure
 
-Ramidus is a runtime framework and is therefore structured to use 100% vanilla routing, i.e. `/docs/index.html`. The "@" folder contains everything relevant to your application like components, assets and layouts. "@" is short for "app." This convention keeps the app folder first alphabetically so you don't lose it in your content.
+The "@" folder contains everything relevant to your application like components, assets and layouts. "@" is short for "app." This convention keeps the app folder first alphabetically so you don't lose it in your content.
 
 <div class="tree">
 
@@ -56,21 +56,49 @@ Ramidus is a runtime framework and is therefore structured to use 100% vanilla r
 
 ## Pages
 
-Writing pages in Ramidus is just like writing pages in a vanilla site, with one small exception: Ramidus has templates! There are two things you must include in every page to make this work.
+Each page should have its own folder containing an index.html file, i.e. `/about/index.html`. Thanks to the power of custom elements, pages can share a layout by assigning a custom element containing the site's layout to the body.
+
+### Minimum page structure
 
 1. A body tag with the `is` attribute loading a custom element. You can use markdown by adding `lang="md"` to the body.
-2. A script tag loading `/@/main.js`
+2. A script tag loading `/@/main.js`. This enables the SPA behavior.
 
 ```html
 &lt;body is="app-layout" lang="md"&gt;
 
-# Hello World
+# About Ramidus
 
-This site is written in markdown with Ramidus.
+This site is written in markdown.
 
 <script src="/@/main.js" type="module"></script>
 
 &lt;/body&gt;
+```
+
+## Layouts
+
+A layout is simply a custom element containing the site's shared markup and a slot for the page content. Here is the default layout included with Ramidus. Notice that the layout can contain any number of other components. This example is written with Ardi, but you can write it with any framework (or none).
+
+```js
+// @/components/app-layout.
+
+import ardi, { html } from '//cdn.skypack.dev/ardi'
+
+ardi({
+  tag: 'app-layout',
+  extends: [HTMLBodyElement, 'body'],
+  template() {
+    return html`
+      <app-nav></app-nav>
+      <main>
+        <spa-slot>
+          <slot></slot>
+        </spa-slot>
+      </main>
+      <app-footer></app-footer>
+    `
+  },
+})
 ```
 
 <script src="/@/main.js" type="module"></script>
