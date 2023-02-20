@@ -60,8 +60,11 @@ Each page should have its own folder containing an index.html file, i.e. `/about
 
 ### Minimum page structure
 
-1. A body tag with the `is` attribute loading a custom element. You can use markdown by adding `lang="md"` to the body.
-2. A script tag loading `/@/main.js`. This enables the SPA behavior.
+Every page should include the following:
+
+1. A body tag with this `is` attribute assigned to a custom element that contains the page's layout.
+2. A script tag loading `/@/main.js`. This loads the custom elemenets required to make the site operate as an SPA.
+3. You can write the page in markdown by adding `lang="md"` to the body and writing markdown between the opening and closing body tags. If you use prettier, you'll need to add a `<!--prettier-ignore-->` comment before the body tag.
 
 ```html
 &lt;body is="app-layout" lang="md"&gt;
@@ -75,12 +78,25 @@ This site is written in markdown.
 &lt;/body&gt;
 ```
 
+### Linking to Pages
+
+To enable SPA-style page loading, internal links should be written with the `<spa-link>` element, like this:
+```html
+<spa-link href="/about">About Us</spa-link>
+```
+
+You can also use `<spa-link>` to scroll the page to an element with and ID using a hash link, like this:
+
+```html
+<spa-link href="#getting-started">Getting Started</spa-link>
+```
+
 ## Layouts
 
-A layout is a custom element containing the site's shared markup and a slot for the page content. Here is the default layout included with Ramidus. Notice that the layout can contain any number of other components. This example is written with Ardi, but you can write it with any framework (or none).
+A layout is a custom element containing the site's shared markup and a slot for the page content. A layout should include the `<spa-root>` element with a nested `<slot>`. Here is the default layout included with Ramidus. Notice that the layout can contain any number of other components. This example is written with Ardi, but you can write it with any framework (or none).
 
 ```js
-// @/components/app-layout.
+// /@/components/app-layout.
 
 import ardi, { html } from '//cdn.skypack.dev/ardi'
 
@@ -91,9 +107,9 @@ ardi({
     return html`
       <app-nav></app-nav>
       <main>
-        <spa-slot>
+        <spa-root>
           <slot></slot>
-        </spa-slot>
+        </spa-root>
       </main>
       <app-footer></app-footer>
     `

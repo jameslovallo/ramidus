@@ -14,9 +14,9 @@ ardi({
       </style>
       <app-nav></app-nav>
       <main>
-        <spa-slot>
+        <spa-root>
           <slot></slot>
-        </spa-slot>
+        </spa-root>
       </main>
       <app-footer></app-footer>
     `
