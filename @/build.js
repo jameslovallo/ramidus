@@ -79,7 +79,6 @@ exec(
       return
     }
     console.log(`stdout: ${stdout}`)
+    if (!error && !stderr) buildHTML('./dist/', '.html')
   }
 )
-
-buildHTML('./dist/', '.html')
