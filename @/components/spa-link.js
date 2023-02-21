@@ -47,11 +47,8 @@ ardi({
     this.getPage()
   },
   click(e) {
-    e.preventDefault()
-    if (this.href.startsWith('#')) {
-      const heading = document.body.querySelector(this.href)
-      window.scrollTo(0, heading.offsetTop - 48, { behavior: 'smooth' })
-    } else if (this.href !== location.pathname) {
+    if (!this.href.startsWith('#') && this.href !== location.pathname) {
+      e.preventDefault()
       sessionStorage.removeItem('spa-reload')
       this.setPage()
     }
