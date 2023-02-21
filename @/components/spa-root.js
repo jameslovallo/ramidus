@@ -33,10 +33,6 @@ ardi({
       this.handleMD(doc)
     } else document.body.innerHTML = doc
     this.handleTitle(doc)
-
-    doc.includes('```') || doc.includes('language-')
-      ? this.highlight()
-      : undefined
     !firstLoad && document.body.removeAttribute('lang')
   },
   handleTitle(doc) {
