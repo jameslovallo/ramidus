@@ -59,11 +59,10 @@ function buildHTML(startPath, filter) {
           .replaceAll('&amp;', '&')
           .replaceAll('&lt;', '<')
           .replaceAll('&gt;', '>')
-          .replace(' lang="md"', '')
         body = marked.parse(body, {
           gfm: true,
         })
-        body = openingTag + body + '</body>'
+        body = openingTag.replace(' lang="md"', '') + body + '</body>'
       }
       fs.writeFileSync(filename, doc(head, body), {
         encoding: 'utf8',
