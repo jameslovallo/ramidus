@@ -17,11 +17,14 @@ ardi({
       })
   },
   setPage(doc, path, firstLoad) {
+    // check if page is prebuilt
     const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
+    // handle head
     if (firstLoad && !prebuilt && !this.headSet) {
       this.setHead()
       this.headSet = true
     }
+    // allow page to request native loading
     if (doc.includes('<!-- spa-reload -->')) {
       if (!sessionStorage.getItem('spa-reload')) {
         sessionStorage.setItem('spa-reload', true)
@@ -29,14 +32,18 @@ ardi({
         return
       }
     } else sessionStorage.removeItem('spa-reload')
+    // handle markdown
     if (
       (firstLoad && document.body.lang === 'md') ||
-      doc.startsWith('<!-- md -->')
-    )
+      doc.trim().startsWith('<!-- md -->')
+    ) {
       this.handleMD(doc)
-    this.handleTitle(doc)
-    if (doc.includes('```') || doc.includes('language-')) this.highlight()
+    } else document.body.innerHTML = doc
     !firstLoad && document.body.removeAttribute('lang')
+    // handle page title
+    this.handleTitle(doc)
+    // highlight code blocks
+    if (doc.includes('```') || doc.includes('language-')) this.highlight()
   },
   handleTitle(doc) {
     let mdH1 = doc.match(/# .+/)
