@@ -1,6 +1,6 @@
 {
   "name": "ramidus",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Ramidus is a SPA for the modern web. Built with and for custom elements, Ramidus provides familiar conventions and a *tiny* bit of tooling to provide the best UX and DX possible.",
   "type": "module",
   "bin": "./bin.js",
