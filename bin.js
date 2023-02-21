@@ -7,6 +7,7 @@ import path from 'path'
 const zip = './ramidus.zip'
 
 const pkgJSON = `{
+  "type": "module",
   "scripts": {
     "build": "node @/build.js",
     "dev": "npx http-server -p 3000 -o"
