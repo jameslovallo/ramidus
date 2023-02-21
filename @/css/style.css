@@ -41,25 +41,15 @@ h3 {
   margin-top: 2em;
 }
 
-.tree {
+.tree ul {
   font-size: 14px;
   line-height: 2em;
-}
-
-.tree p,
-.tree ul {
-  margin: 0;
-}
-
-.tree ul {
   list-style: none;
-  padding-inline-start: 12px;
+  padding-inline-start: 0;
 }
 
-.tree span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.tree ul ul {
+  padding-inline-start: 12px;
 }
 
 table,

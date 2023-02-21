@@ -6,6 +6,7 @@ const components = [
   'code-demo',
   'spa-link',
   'spa-root',
+  'tree-icon',
 ]
 components.forEach((c) => import(`/@/components/${c}.js`))
 
