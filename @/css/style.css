@@ -73,8 +73,10 @@ td {
   padding: 0.5rem;
 }
 
-[class*='language-'] {
+code[class*='language-'],
+pre[class*='language-'] {
   font-size: 13px;
+  line-height: 2;
 }
 
 code {
