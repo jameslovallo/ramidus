@@ -53,6 +53,7 @@ ardi({
     let htmlTitle = doc.match(/<title>.+<\/title>/)
     if (htmlTitle)
       htmlTitle = [0].replace('<title>', '').replace('</title>', '')
+    console.log(doc, htmlTitle, htmlH1, mdH1)
     document.title = htmlTitle || htmlH1 || mdH1
   },
   handleMD(doc) {
