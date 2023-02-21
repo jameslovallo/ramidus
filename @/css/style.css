@@ -3,30 +3,36 @@
   --surface: rgba(125, 125, 125, 0.1);
   color-scheme: dark;
   font-family: sans-serif;
-  line-height: 1.5;
+  line-height: 1.7;
+  scroll-behavior: smooth;
 }
 
 html,
 body {
   min-height: 100vh;
-  scroll-behavior: smooth;
 }
 
 body {
+  color: #d3d3d3;
   margin: 0;
 }
 
+h1 {
+  font-family: JetBrains Mono;
+}
+
+h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  color: white;
   font-weight: normal;
 }
 
 h2 {
   border-bottom: 1px solid var(--border);
-  line-height: 1;
   margin-bottom: 1rem;
   margin-top: 2em;
   padding-bottom: 1rem;
@@ -40,7 +46,7 @@ ul,
 ol {
   line-height: 2em;
   list-style-position: inside;
-  padding-inline-start: 1rem;
+  padding-inline-start: 0.25rem;
 }
 
 .tree ul {
@@ -70,6 +76,10 @@ td {
 
 [class*='language-'] {
   font-size: 13px;
+}
+
+code {
+  font-family: JetBrains Mono !important;
 }
 
 code:not([class^='language']) {

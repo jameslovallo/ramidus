@@ -6,6 +6,11 @@ ardi({
   state: () => ({ pageData: '' }),
   template() {
     return html`
+      <style>
+        :host {
+          display: inline-block;
+        }
+      </style>
       <a
         part="link"
         href=${this.href}

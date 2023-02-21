@@ -13,6 +13,16 @@
     {
       "rel": "icon",
       "href": "/@/assets/favicon.svg"
+    },
+    { "rel": "preconnect", "href": "https://fonts.googleapis.com" },
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.gstatic.com",
+      "crossorigin": true
+    },
+    {
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains&display=swap",
+      "rel": "stylesheet"
     }
   ]
 }

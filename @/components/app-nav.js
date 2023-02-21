@@ -39,9 +39,10 @@ ardi({
     }
     spa-link:first-of-type {
       margin-right: auto;
-      padding: .75rem 0;
+      padding: 0;
     }
     spa-link:first-of-type img {
+      margin: .25rem 0;
       width:32px;
     }
     spa-link::part(link) {

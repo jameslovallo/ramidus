@@ -3,7 +3,7 @@
 
 # Ramidus Docs
 
-Ramidus is a SPA framework built with, and designed for, custom elements.
+Ramidus is a SPA framework built for custom elements.
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ npx ramidus@latest && npm run dev
 
 ## Project Structure
 
-The "@" folder contains everything relevant to your application like components, assets and layouts. "@" is short for "app." This convention keeps the app folder first alphabetically so you don't lose it in your content.
+The "@" folder contains global content like components, assets, layouts and your site's head. This convention keeps the folder first alphabetically so you don't lose it in your content.
 
 <div class="tree">
 
@@ -43,17 +43,19 @@ The "@" folder contains everything relevant to your application like components,
 
 ## Pages
 
-Each page should have its own folder containing an index.html file, i.e. `/about/index.html`. Thanks to the power of custom elements, pages can share a layout by assigning a custom element containing the site's layout to the body.
+Each page must have its own folder containing an index.html file, i.e. `/about/index.html`. Pages can use a shared layout by assigning a custom element to the body (see <spa-link href="#layouts">layouts</spa-link>).
 
-### Minimum page structure
+### Writing Pages
 
-Every page should include each of the following:
+Every page must include the following:
 
 1. A body tag with the `is` attribute assigned to a custom element that contains the page's layout.
-2. A script tag loading `/@/main.js`. This loads the custom elemenets required to make the site operate as an SPA.
-3. You can write the page in markdown by adding `lang="md"` to the body and writing markdown between the opening and closing body tags. If you use prettier, you'll need to add a `<!--prettier-ignore-->` comment before the body tag.
+2. A script tag loading `/@/main.js`. This loads the custom elements required to make the site operate as an SPA.
+
+You can write the page in markdown by adding `lang="md"` to the body and writing markdown between the opening and closing body tags. If you use prettier, you'll need to add a `<!--prettier-ignore-->` comment before the body tag.
 
 ```html
+<!--prettier-ignore-->
 &lt;body is="app-layout" lang="md"&gt;
 
 # About Ramidus
@@ -67,7 +69,7 @@ This site is written in markdown.
 
 ### Linking to Pages
 
-To enable SPA-style page loading, internal links should be handled using the `<spa-link>` element. Using a hash link will scroll to the element with the same ID.
+To enable SPA-style page loading, internal links should be handled using the `<spa-link>` element. Clicking a hash link will scroll to the element with the same ID.
 
 ```html
 <spa-link href="/about">About Us</spa-link>
@@ -76,7 +78,7 @@ To enable SPA-style page loading, internal links should be handled using the `<s
 
 ## Layouts
 
-A layout is a custom element containing the site's shared markup. Layouts should include the `<spa-root>` element with a nested `<slot>` to load the page's content. Here is the default layout included with Ramidus. Notice that the layout can contain any number of other components.
+A layout is a custom element containing the site's shared markup. Layouts should include the `<spa-root>` element with a nested `<slot>` to load the page's content. Here is the default layout included with Ramidus.
 
 ```html
 <app-nav></app-nav>
@@ -96,11 +98,12 @@ Global components live in `/@/components` and are registered in `/@/main.js`. Ra
 
 ## Deployment
 
-No build step is required to deploy this site: you can run this project from a simple web server. There is an optional build step that provides a few benefits. 
+No build step is required to deploy this site: you can copy this project to a simple server and it will run just fine as-is. You will probably still want to run `npm run build` before you deploy though.
 
 ### Benefits of Bulding
-1. `&lt;head&gt;` is added to each page so it doesn't need to be generated when the page loads.
-2. The page gracefully fades in after globally-registered components have loaded, preventing [Cumulative Layout Shift (CLS)](https://web.dev/cls/).
+1. Pages written in markdown are compiled to HTML, resulting in faster [FCP](https://web.dev/fcp/) and [LCP](https://web.dev/lcp/) scores.
+1. The site's `head` is included with each page instead of being generated when the first page loads.
+2. Building will make it so the first page the user loads is hidden at first, then gracefully fades in after the globally-registered components have loaded, preventing [CLS](https://web.dev/cls/).
 
 ### Deploying to Netlify, Vercel or Similar
 | Build Command | Publish Directory |

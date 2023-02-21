@@ -18,7 +18,10 @@ ardi({
   },
   setPage(doc, path, firstLoad) {
     const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
-    if (firstLoad && !prebuilt) this.setHead()
+    if (firstLoad && !prebuilt && !this.headSet) {
+      this.setHead()
+      this.headSet = true
+    }
     if (doc.includes('<!-- spa-reload -->')) {
       if (!sessionStorage.getItem('spa-reload')) {
         sessionStorage.setItem('spa-reload', true)
