@@ -59,6 +59,7 @@ function buildHTML(startPath, filter) {
           .replaceAll('&amp;', '&')
           .replaceAll('&lt;', '<')
           .replaceAll('&gt;', '>')
+          .replace(' lang="md"', '')
         body = marked.parse(body, {
           gfm: true,
         })
