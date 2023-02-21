@@ -48,8 +48,8 @@ ardi({
   handleTitle(doc) {
     let mdH1 = doc.match(/# .+/)
     if (mdH1) mdH1 = mdH1[0].replace('# ', '')
-    let htmlH1 = doc.match(/<h1>.+<\/h1>/)
-    if (htmlH1) htmlH1 = htmlH1[0].replace('<h1>', '').replace('</h1>', '')
+    let htmlH1 = doc.match(/<h1.+<\/h1>/)
+    if (htmlH1) htmlH1 = htmlH1[0].replace(/<h1.+>/, '').replace('</h1>', '')
     let htmlTitle = doc.match(/<title>.+<\/title>/)
     if (htmlTitle)
       htmlTitle = [0].replace('<title>', '').replace('</title>', '')
