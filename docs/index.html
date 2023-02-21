@@ -100,7 +100,7 @@ Global components live in `/@/components` and are registered in `/@/main.js`. Ra
 
 No build step is required to deploy this site: you can copy this project to a simple server and it will run just fine as-is. You will probably still want to run `npm run build` before you deploy though.
 
-### Benefits of Bulding
+### Benefits of Building
 1. Pages written in markdown are compiled to HTML, resulting in faster [FCP](https://web.dev/fcp/) and [LCP](https://web.dev/lcp/) scores.
 1. The site's `head` is included with each page instead of being generated when the first page loads.
 2. Building will make it so the first page the user loads is hidden at first, then gracefully fades in after the globally-registered components have loaded, preventing [CLS](https://web.dev/cls/).
