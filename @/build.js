@@ -1,5 +1,6 @@
 import { exec } from 'child_process'
 import fs from 'fs'
+import { marked } from 'marked'
 import path from 'path'
 import headJSON from './head.json' assert { type: 'json' }
 
@@ -45,11 +46,24 @@ function buildHTML(startPath, filter) {
     if (stat.isDirectory()) {
       buildHTML(filename, filter) //recurse
     } else if (filename.endsWith(filter)) {
-      const file = getFile(filename)
-      const body = file.replace(
+      let file = getFile(filename)
+      let body = file.replace(
         '<body',
         '<body style="opacity: 0; transition: opacity .5s;"'
       )
+      if (file.includes('lang="md"')) {
+        let openingTag = body.match(/<body.+>/)[0]
+        body = body.replace(openingTag, '')
+        body = body
+          .replace('</body>', '')
+          .replaceAll('&amp;', '&')
+          .replaceAll('&lt;', '<')
+          .replaceAll('&gt;', '>')
+        body = marked.parse(body, {
+          gfm: true,
+        })
+        body = openingTag + body + '</body>'
+      }
       fs.writeFileSync(filename, doc(head, body), {
         encoding: 'utf8',
       })
