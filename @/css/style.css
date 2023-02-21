@@ -1,14 +1,9 @@
 :root {
-  --border: rgba(125, 125, 125, 0.5);
+  --border: rgba(125, 125, 125, 0.4);
   --surface: rgba(125, 125, 125, 0.1);
+  color-scheme: dark;
   font-family: sans-serif;
   line-height: 1.5;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
 }
 
 html,
@@ -41,11 +36,16 @@ h3 {
   margin-top: 2em;
 }
 
+ul,
+ol {
+  line-height: 2em;
+  list-style-position: inside;
+  padding-inline-start: 1rem;
+}
+
 .tree ul {
   font-size: 14px;
-  line-height: 2em;
   list-style: none;
-  padding-inline-start: 0;
 }
 
 .tree ul ul {

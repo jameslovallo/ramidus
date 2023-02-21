@@ -29,9 +29,8 @@ ardi({
     if (
       (firstLoad && document.body.lang === 'md') ||
       doc.startsWith('<!-- md -->')
-    ) {
+    )
       this.handleMD(doc)
-    } else document.body.innerHTML = doc
     this.handleTitle(doc)
     if (doc.includes('```') || doc.includes('language-')) this.highlight()
     !firstLoad && document.body.removeAttribute('lang')
