@@ -8,7 +8,7 @@ ardi({
       <style>
         main {
           margin: 0 auto;
-          max-width: 80ch;
+          max-width: 70ch;
           padding: 1rem 1rem 4rem;
         }
       </style>

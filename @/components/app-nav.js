@@ -42,7 +42,7 @@ ardi({
       padding: 0;
     }
     spa-link:first-of-type img {
-      margin: .25rem 0;
+      margin: .5rem 0;
       width:32px;
     }
     spa-link::part(link) {

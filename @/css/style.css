@@ -45,8 +45,7 @@ h3 {
 ul,
 ol {
   line-height: 2em;
-  list-style-position: inside;
-  padding-inline-start: 0.25rem;
+  padding-inline-start: 1rem;
 }
 
 .tree ul {
