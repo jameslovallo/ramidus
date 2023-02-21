@@ -16,13 +16,12 @@ ardi({
         })
       })
   },
-  setPage(doc, path, firstLoad) {
+  setPage(doc, path, init) {
     // check if page is prebuilt
     const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
     // handle head
-    if (firstLoad && !prebuilt && !this.headSet) {
+    if (init && !prebuilt) {
       this.setHead()
-      this.headSet = true
     }
     // allow page to request native loading
     if (doc.includes('<!-- spa-reload -->')) {
@@ -34,12 +33,12 @@ ardi({
     } else sessionStorage.removeItem('spa-reload')
     // handle markdown
     if (
-      (firstLoad && document.body.lang === 'md') ||
+      (init && document.body.lang === 'md') ||
       doc.trim().startsWith('<!-- md -->')
     ) {
       this.handleMD(doc)
     } else document.body.innerHTML = doc
-    !firstLoad && document.body.removeAttribute('lang')
+    !init && document.body.removeAttribute('lang')
     // handle page title
     this.handleTitle(doc)
     // highlight code blocks
@@ -94,17 +93,20 @@ ardi({
     if (!sessionStorage[href]) sessionStorage[href] = data
   },
   ready() {
-    window.appSlot = this
-    this.setPage(document.body.innerHTML, location.pathname, true)
-    // history stuff
-    const firstPageIsMD = document.body.lang === 'md'
-    this.pushHistory(
-      location.pathname,
-      (firstPageIsMD ? '<!-- md -->' : '') + document.body.innerHTML
-    )
-    firstPageIsMD && document.body.removeAttribute('lang')
-    addEventListener('popstate', (e) => {
-      this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
-    })
+    if (!window.ramidusInitialized) {
+      window.appSlot = this
+      this.setPage(document.body.innerHTML, location.pathname, true)
+      // history stuff
+      const firstPageIsMD = document.body.lang === 'md'
+      this.pushHistory(
+        location.pathname,
+        (firstPageIsMD ? '<!-- md -->' : '') + document.body.innerHTML
+      )
+      firstPageIsMD && document.body.removeAttribute('lang')
+      addEventListener('popstate', (e) => {
+        this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
+      })
+      window.ramidusInitialized = true
+    }
   },
 })
