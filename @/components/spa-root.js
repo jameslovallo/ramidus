@@ -33,6 +33,10 @@ ardi({
       this.handleMD(doc)
     } else document.body.innerHTML = doc
     this.handleTitle(doc)
+
+    doc.includes('```') || doc.includes('language-')
+      ? this.highlight()
+      : undefined
     !firstLoad && document.body.removeAttribute('lang')
   },
   handleTitle(doc) {
@@ -53,10 +57,6 @@ ardi({
     import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
       document.body.innerHTML = marked.parse(doc, {
         gfm: true,
-        highlight:
-          doc.includes('```') || doc.includes('language-')
-            ? this.highlight()
-            : undefined,
       })
     })
   },
