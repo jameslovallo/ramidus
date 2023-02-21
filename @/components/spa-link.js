@@ -51,7 +51,7 @@ ardi({
     if (this.href.startsWith('#')) {
       const heading = document.body.querySelector(this.href)
       window.scrollTo(0, heading.offsetTop - 48, { behavior: 'smooth' })
-    } else {
+    } else if (this.href !== location.pathname) {
       sessionStorage.removeItem('spa-reload')
       this.setPage()
     }
