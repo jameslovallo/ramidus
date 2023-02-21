@@ -104,7 +104,9 @@ ardi({
       )
       firstPageIsMD && document.body.removeAttribute('lang')
       addEventListener('popstate', (e) => {
-        this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
+        if (e.state.path) {
+          this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
+        }
       })
       window.ramidusInitialized = true
     }
