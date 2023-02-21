@@ -52,7 +52,7 @@ function buildHTML(startPath, filter) {
         '<body style="opacity: 0; transition: opacity .5s;"'
       )
       if (file.includes('lang="md"')) {
-        let openingTag = body.match(/<body.+>/)[0].replace(' lang="md"', '')
+        let openingTag = body.match(/<body.+>/)[0]
         body = body.replace(openingTag, '')
         body = body
           .replace('</body>', '')
@@ -62,7 +62,7 @@ function buildHTML(startPath, filter) {
         body = marked.parse(body, {
           gfm: true,
         })
-        body = openingTag + body + '</body>'
+        body = openingTag.replace(' lang="md"', '') + body + '</body>'
       }
       fs.writeFileSync(filename, doc(head, body), {
         encoding: 'utf8',

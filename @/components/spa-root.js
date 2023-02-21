@@ -53,6 +53,10 @@ ardi({
     import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
       document.body.innerHTML = marked.parse(doc, {
         gfm: true,
+        highlight:
+          doc.includes('```') || doc.includes('language-')
+            ? this.highlight()
+            : undefined,
       })
     })
   },
