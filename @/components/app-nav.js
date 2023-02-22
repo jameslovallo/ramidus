@@ -42,13 +42,14 @@ ardi({
       padding: 0;
     }
     spa-link:first-of-type img {
-      margin: .5rem 0;
-      width:32px;
+      margin: 1rem 0;
+      width:64px;
     }
     spa-link::part(link) {
       align-items: center;
       color: inherit;
       display: flex;
+      font-size: 1.25rem;
       height: 100%;
       text-decoration: none;
     }
