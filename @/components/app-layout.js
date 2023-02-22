@@ -9,7 +9,7 @@ ardi({
         main {
           margin: 0 auto;
           max-width: 70ch;
-          padding: 1rem 1rem 4rem;
+          padding: 0 1rem 4rem;
         }
       </style>
       <app-nav></app-nav>

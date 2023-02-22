@@ -1,6 +1,7 @@
 :root {
   --border: rgba(125, 125, 125, 0.4);
   --surface: rgba(125, 125, 125, 0.1);
+  --surface-heavy: rgba(125, 125, 125, 0.25);
   color-scheme: dark;
   font-family: sans-serif;
   line-height: 1.7;
@@ -34,6 +35,7 @@ h6 {
 
 h2 {
   border-bottom: 1px solid var(--border);
+  line-height: 1;
   margin-bottom: 1rem;
   margin-top: 2em;
   padding-bottom: 1rem;
@@ -81,8 +83,7 @@ pre[class*='language-'] {
 }
 
 code:not([class^='language']) {
-  background: var(--border);
-  border-radius: 2px;
+  border: 1px solid var(--border);
   font-size: 14px;
-  padding: 2px 4px;
+  padding: 2px 2px;
 }

@@ -29,14 +29,8 @@ ardi({
     nav {
       box-shadow: 0 0 3px rgba(0,0,0,0.25);
       display: flex;
-      font-size: 1.25rem;
-      gap: 1em;
+      gap: 1rem;
       padding: 0 1rem;
-    }
-    @media (prefers-color-scheme: dark) {
-      nav {
-        border-bottom: 1px solid var(--surface);
-      }
     }
     spa-link:first-of-type {
       margin-right: auto;
@@ -44,7 +38,7 @@ ardi({
     }
     spa-link:first-of-type img {
       margin: 1rem 0;
-      width:64px;
+      width: 48px;
     }
     spa-link::part(link) {
       align-items: center;
