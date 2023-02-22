@@ -80,10 +80,6 @@ pre[class*='language-'] {
   line-height: 2;
 }
 
-code {
-  font-family: JetBrains Mono !important;
-}
-
 code:not([class^='language']) {
   background: var(--border);
   border-radius: 2px;
