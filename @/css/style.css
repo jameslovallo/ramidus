@@ -10,16 +10,9 @@
 
 html,
 body {
-  min-height: 100vh;
-}
-
-body {
   color: #d3d3d3;
   margin: 0;
-}
-
-h1 {
-  font-family: JetBrains Mono;
+  min-height: 100vh;
 }
 
 h1,
