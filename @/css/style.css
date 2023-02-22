@@ -30,7 +30,8 @@ h5,
 h6 {
   color: white;
   font-weight: normal;
-  scroll-margin-top: 48px;
+  margin-bottom: 1rem;
+  scroll-margin-top: 3rem;
 }
 
 h2 {
@@ -57,7 +58,7 @@ ol {
 }
 
 .tree ul ul {
-  padding-inline-start: 12px;
+  padding-inline-start: 0.75rem;
 }
 
 table,

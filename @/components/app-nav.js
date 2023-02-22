@@ -38,7 +38,7 @@ ardi({
     }
     spa-link:first-of-type img {
       margin: 1rem 0;
-      width: 48px;
+      width: 3rem;
     }
     spa-link::part(link) {
       align-items: center;
