@@ -29,7 +29,8 @@ ardi({
     nav {
       box-shadow: 0 0 3px rgba(0,0,0,0.25);
       display: flex;
-      gap: 1rem;
+      font-size: 1.25rem;
+      gap: 1em;
       padding: 0 1rem;
     }
     @media (prefers-color-scheme: dark) {
@@ -49,7 +50,6 @@ ardi({
       align-items: center;
       color: inherit;
       display: flex;
-      font-size: 1.25rem;
       height: 100%;
       text-decoration: none;
     }
