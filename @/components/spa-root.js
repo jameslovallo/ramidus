@@ -16,7 +16,7 @@ ardi({
         })
       })
   },
-  setPage(doc, path, init) {
+  async setPage(doc, path, init) {
     // check if page is prebuilt
     const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
     // handle head
@@ -54,16 +54,14 @@ ardi({
       htmlTitle = [0].replace('<title>', '').replace('</title>', '')
     document.title = htmlTitle || htmlH1 || mdH1
   },
-  handleMD(doc) {
-    doc = doc
-      .replaceAll('&amp;', '&')
-      .replaceAll('&lt;', '<')
-      .replaceAll('&gt;', '>')
-    import('//unpkg.com/marked@4.2.12/lib/marked.esm.js').then((marked) => {
-      document.body.innerHTML = marked.parse(doc, {
-        gfm: true,
-      })
+  async handleMD(doc) {
+    const marked = await import('//unpkg.com/marked@4.2.12/lib/marked.esm.js')
+    let unescape = await import('https://cdn.skypack.dev/unescape@1.0.1')
+    unescape = unescape.default
+    document.body.innerHTML = marked.parse(unescape(doc), {
+      gfm: true,
     })
+    this.highlight()
   },
   highlight() {
     import('//cdn.skypack.dev/prismjs').then((prism) => {

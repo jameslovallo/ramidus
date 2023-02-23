@@ -2,6 +2,7 @@ import { exec } from 'child_process'
 import fs from 'fs'
 import { marked } from 'marked'
 import path from 'path'
+import unescape from 'unescape'
 import headJSON from './head.json' assert { type: 'json' }
 
 const doc = (head, body) => `
@@ -54,12 +55,8 @@ function buildHTML(startPath, filter) {
       if (file.includes('lang="md"')) {
         let openingTag = body.match(/<body.+>/)[0]
         body = body.replace(openingTag, '')
-        body = body
-          .replace('</body>', '')
-          .replaceAll('&amp;', '&')
-          .replaceAll('&lt;', '<')
-          .replaceAll('&gt;', '>')
-        body = marked.parse(body, {
+        body = body.replace('</body>', '')
+        body = marked.parse(unescape(body), {
           gfm: true,
         })
         body = openingTag.replace(' lang="md"', '') + body + '</body>'

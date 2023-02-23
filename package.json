@@ -8,7 +8,8 @@
   "license": "ISC",
   "dependencies": {
     "extract-zip": "^2.0.1",
-    "marked": "^4.2.12"
+    "marked": "^4.2.12",
+    "unescape": "^1.0.1"
   },
   "scripts": {
     "build": "node @/build.js"
