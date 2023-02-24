@@ -47,9 +47,8 @@ ardi({
     this.getPage()
   },
   click(e) {
-    console.log(this.href, location.pathname)
-    if (!this.href.startsWith('#') && this.href !== location.pathname) {
-      e.preventDefault()
+    e.preventDefault()
+    if (this.href !== location.pathname) {
       sessionStorage.removeItem('spa-reload')
       this.setPage()
     }
