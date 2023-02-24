@@ -9,9 +9,6 @@ ardi({
   tag: 'app-nav',
   template() {
     return html`
-      <style>
-        ${this.css}
-      </style>
       <nav>
         <spa-link href="/">
           <img
