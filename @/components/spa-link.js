@@ -2,7 +2,7 @@ import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
   tag: 'spa-link',
-  props: { href: [String, '/home.html'] },
+  props: { href: [String, '/'] },
   state: () => ({ pageData: '' }),
   template() {
     return html`
@@ -47,8 +47,8 @@ ardi({
     this.getPage()
   },
   click(e) {
-    if (!this.href.startsWith('#') && this.href !== location.pathname) {
-      e.preventDefault()
+    e.preventDefault()
+    if (this.href !== location.pathname) {
       sessionStorage.removeItem('spa-reload')
       this.setPage()
     }

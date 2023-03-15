@@ -4,9 +4,6 @@ ardi({
   tag: 'app-footer',
   template() {
     return html`
-      <style>
-        ${this.css}
-      </style>
       <footer>
         <p>Made with <a href="https://ardi.netlify.app">Ardi</a></p>
       </footer>
