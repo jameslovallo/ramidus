@@ -31,49 +31,28 @@ ardi({
         return
       }
     } else sessionStorage.removeItem('spa-reload')
-    // handle markdown
-    if (
-      (init && document.body.lang === 'md') ||
-      doc.trim().startsWith('<!-- md -->')
-    ) {
-      this.handleMD(doc)
-    } else document.body.innerHTML = doc
-    !init && document.body.removeAttribute('lang')
+    // set page content
+    this.appLayout.innerHTML = doc
     // handle page title
     this.handleTitle(doc)
-    // highlight code blocks
-    if (doc.includes('```') || doc.includes('language-')) this.highlight()
+    const pageClass = path.split('/')[1] || 'home'
+    this.appLayout.classList = [pageClass]
+    // handle scripts
+    this.appLayout.querySelectorAll('script').forEach((tag) => {
+      const newTag = document.createElement('script')
+      newTag.src = tag.src
+      newTag.type = tag.type
+      newTag.textContent = tag.textContent
+      tag.replaceWith(newTag)
+    })
   },
   handleTitle(doc) {
-    let mdH1 = doc.match(/# .+/)
-    if (mdH1) mdH1 = mdH1[0].replace('# ', '')
     let htmlH1 = doc.match(/<h1.+<\/h1>/)
     if (htmlH1) htmlH1 = htmlH1[0].replace(/<h1.*?>/, '').replace('</h1>', '')
     let htmlTitle = doc.match(/<title>.+<\/title>/)
     if (htmlTitle)
       htmlTitle = [0].replace('<title>', '').replace('</title>', '')
-    document.title = htmlTitle || htmlH1 || mdH1
-  },
-  async handleMD(doc) {
-    const marked = await import('//unpkg.com/marked@4.2.12/lib/marked.esm.js')
-    let unescape = await import('https://cdn.skypack.dev/unescape@1.0.1')
-    unescape = unescape.default
-    document.body.innerHTML = marked.parse(unescape(doc), {
-      gfm: true,
-    })
-    this.highlight()
-  },
-  highlight() {
-    import('//cdn.skypack.dev/prismjs').then((prism) => {
-      prism.highlightAllUnder(document.body)
-    })
-    if (!this.prismCssLoaded) {
-      this.createTag(document.head, 'link', {
-        rel: 'stylesheet',
-        href: '/@/css/prism.css',
-      })
-      this.prismCssLoaded = true
-    }
+    document.title = htmlTitle || htmlH1
   },
   createTag(target, type, attrs) {
     const tag = document.createElement(type)
@@ -92,15 +71,11 @@ ardi({
   },
   ready() {
     if (!window.ramidusInitialized) {
-      window.appSlot = this
-      this.setPage(document.body.innerHTML, location.pathname, true)
+      window.appRoot = this
+      this.appLayout = document.querySelector('app-layout')
+      this.setPage(this.appLayout.innerHTML, location.pathname, true)
       // history stuff
-      const firstPageIsMD = document.body.lang === 'md'
-      this.pushHistory(
-        location.pathname,
-        (firstPageIsMD ? '<!-- md -->' : '') + document.body.innerHTML
-      )
-      firstPageIsMD && document.body.removeAttribute('lang')
+      this.pushHistory(location.pathname, this.appLayout.innerHTML)
       addEventListener('popstate', (e) => {
         if (e.state.path) {
           this.setPage(sessionStorage.getItem(e.state.path), e.state.path)

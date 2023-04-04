@@ -1,33 +1,32 @@
-import ardi, { svg } from '//cdn.skypack.dev/ardi'
+import ardi, { html } from '//cdn.skypack.dev/ardi'
 
 ardi({
   tag: 'tree-icon',
   props: {
     color: [String, '#20C997'],
     icon: [String, 'folder'],
-    label: [String],
     size: [String, '1.25em'],
   },
   template() {
-    return svg`
-			<style>
-				:host {
-					align-items: center;
-					display: flex;
-					gap: .5rem;
-				}
-			</style>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 24 24"
-				fill=${this.color}
-				height=${this.size}
-				width=${this.size}
-			>
-				<path d=${this.icons[this.icon]} />
-			</svg>
-			${this.label}
-		`
+    return html`
+      <style>
+        :host {
+          align-items: center;
+          display: flex;
+          gap: 0.5rem;
+        }
+      </style>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill=${this.color}
+        height=${this.size}
+        width=${this.size}
+      >
+        <path d=${this.icons[this.icon]} />
+      </svg>
+      <slot></slot>
+    `
   },
   icons: {
     assets:

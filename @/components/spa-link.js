@@ -29,17 +29,17 @@ ardi({
       fetch(this.pagePath())
         .then((res) => res.text())
         .then((html) => {
-          const md = html.includes(`lang="md"`)
-          this.pageData = html.split(/<body.+>/g)[1].split(`</body>`)[0]
-          if (md) this.pageData = `<!-- md -->` + this.pageData
+          this.pageData = html
+            .split('<app-layout>')[1]
+            .split(`</app-layout>`)[0]
           setPage && this.setPage()
         })
     }
   },
   setPage() {
     if (this.pageData) {
-      appSlot.setPage(this.pageData, this.href)
-      appSlot.pushHistory(this.href, this.pageData)
+      appRoot.setPage(this.pageData, this.href)
+      appRoot.pushHistory(this.href, this.pageData)
     } else this.getPage(true)
   },
   hover(e) {

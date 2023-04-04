@@ -3,7 +3,7 @@ const components = [
   'app-footer',
   'app-layout',
   'app-nav',
-  'code-demo',
+  'mark-down',
   'spa-link',
   'spa-root',
   'tree-icon',
