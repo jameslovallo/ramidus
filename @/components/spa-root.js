@@ -1,4 +1,5 @@
 import ardi, { html } from '//cdn.skypack.dev/ardi'
+import headJSON from '/@/head.js'
 
 ardi({
   tag: 'spa-root',
@@ -6,15 +7,11 @@ ardi({
     return html`<slot></slot>`
   },
   setHead() {
-    fetch('/@/head.json')
-      .then((res) => res.json())
-      .then((data) => {
-        Object.keys(data).forEach((tagType) => {
-          data[tagType].forEach((el) => {
-            this.createTag(document.head, tagType, el)
-          })
-        })
+    Object.keys(headJSON).forEach((tagType) => {
+      headJSON[tagType].forEach((el) => {
+        this.createTag(document.head, tagType, el)
       })
+    })
   },
   async setPage(doc, path, init) {
     // check if page is prebuilt
@@ -33,26 +30,20 @@ ardi({
     } else sessionStorage.removeItem('spa-reload')
     // set page content
     this.appLayout.innerHTML = doc
-    // handle page title
-    this.handleTitle(doc)
-    const pageClass = path.split('/')[1] || 'home'
-    this.appLayout.classList = [pageClass]
+    document.title = document.querySelector('h1').innerText
+    // build layout classList
+    const pathArray = path.split('/')
+    const pageClass = pathArray[1] || 'home'
+    const pageLevel = 'level-' + pathArray.filter((i) => i.length).length
+    this.appLayout.classList = `${pageClass} ${pageLevel}`
     // handle scripts
     this.appLayout.querySelectorAll('script').forEach((tag) => {
       const newTag = document.createElement('script')
       newTag.src = tag.src
       newTag.type = tag.type
-      newTag.textContent = tag.textContent
+      tag.innerHTML && Function(tag.innerHTML)()
       tag.replaceWith(newTag)
     })
-  },
-  handleTitle(doc) {
-    let htmlH1 = doc.match(/<h1.+<\/h1>/)
-    if (htmlH1) htmlH1 = htmlH1[0].replace(/<h1.*?>/, '').replace('</h1>', '')
-    let htmlTitle = doc.match(/<title>.+<\/title>/)
-    if (htmlTitle)
-      htmlTitle = [0].replace('<title>', '').replace('</title>', '')
-    document.title = htmlTitle || htmlH1
   },
   createTag(target, type, attrs) {
     const tag = document.createElement(type)

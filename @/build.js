@@ -1,14 +1,11 @@
 import { exec } from 'child_process'
 import fs from 'fs'
 import path from 'path'
-import headJSON from './head.json' assert { type: 'json' }
+import headJSON from './head.js'
 
 fs.rmSync('./dist', { recursive: true, force: true })
 
-const date = new Date().toLocaleDateString()
-
 const doc = (head, body) => `
-<!-- Built ${date} -->
 <!DOCTYPE html>
 <html lang="en-us">
 ${head.trim()}
@@ -16,6 +13,7 @@ ${body.trim()}
 </html>`
 
 const head = `
+<!-- Built ${new Date().toLocaleDateString()} -->
 <head>
   <meta name="prebuilt" content="true">
   ${Object.keys(headJSON)
@@ -64,7 +62,6 @@ function buildHTML(startPath, filter) {
 
 const excludes = [
   '.git',
-  '.gitignore',
   '@/build.js',
   'bin.js',
   'node_modules',
