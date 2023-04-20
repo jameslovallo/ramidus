@@ -6,7 +6,7 @@ import path from 'path'
 
 const zip = './ramidus.zip'
 
-const pkgJSON = `{
+const pkg = `{
   "type": "module",
   "scripts": {
     "build": "node @/build.js",
@@ -43,7 +43,7 @@ https
               deleteFolder('./ramidus-main')
               deleteFile('.gitignore')
               deleteFile('./bin.js')
-              fs.writeFile('./package.json', pkgJSON, function (err) {
+              fs.writeFile('./package.json', pkg, function (err) {
                 err && console.error(err)
               })
             })
