@@ -10,7 +10,7 @@ const pkgJSON = `{
   "type": "module",
   "scripts": {
     "build": "node @/build.js",
-    "dev": "npx http-server -p 3000 -o"
+    "dev": "npx browser-sync --server --files '**/*'"
   }
 }`
 
