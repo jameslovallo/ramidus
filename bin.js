@@ -10,7 +10,7 @@ const pkg = `{
   "type": "module",
   "scripts": {
     "build": "node @/build.js",
-    "dev": "npx browser-sync --server --files '**/*'"
+    "dev": "npx browser-sync --files '**/*'"
   }
 }`
 
