@@ -65,24 +65,24 @@ You can include markdown on any page using the `<mark-down>` custom element.
 
 ### Linking to Pages
 
-To enable SPA-style page loading, internal links should be handled using the `<spa-link>` element.
+To enable SPA-style routing, just add `is=app-link` to any internal link.
 
 ```html
-<spa-link href="/about">About Us</spa-link>
-<spa-link href="#getting-started">Getting Started</spa-link>
+<a is="app-link" href="/about">About Us</a>
+<a is="app-link" href="#getting-started">Getting Started</a>
 ```
 
 ## Layouts
 
-A layout is a custom element containing the site's shared markup. Layouts should include the `<spa-root>` element with a nested `<slot>` to load the page's content. Here is the default layout included with Ramidus.
+A layout is a custom element containing the site's shared markup. Layouts should include the `<app-root>` element with a nested `<slot>` to load the page's content. Here is the default layout included with Ramidus.
 
 ```html
 <app-nav></app-nav>
 
 <main>
-  <spa-root>
+  <app-root>
     <slot></slot>
-  </spa-root>
+  </app-root>
 </main>
 
 <app-footer></app-footer>

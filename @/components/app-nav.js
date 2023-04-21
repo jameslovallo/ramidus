@@ -1,4 +1,4 @@
-import ardi, { html } from '//cdn.skypack.dev/ardi'
+import ardi, { html } from '//unpkg.com/ardi'
 
 const nav = [
   { href: '/', label: 'Home' },
@@ -10,14 +10,14 @@ ardi({
   template() {
     return html`
       <nav>
-        <spa-link href="/">
+        <a is="app-link" href="/">
           <img
             src="/@/assets/ardi.svg"
             alt="Ardi Logo, a cute monkey in a spacesuit."
           />
-        </spa-link>
+        </a>
         ${nav.map(
-          (page) => html`<spa-link href=${page.href}>${page.label}</spa-link>`
+          (page) => html`<a is="app-link" href=${page.href}>${page.label}</a>`
         )}
       </nav>
     `
@@ -29,20 +29,20 @@ ardi({
       gap: 1rem;
       padding: 0 1rem;
     }
-    spa-link:first-of-type {
-      margin-right: auto;
-      padding: 0;
-    }
-    spa-link:first-of-type img {
-      margin: 1rem 0;
-      width: 3rem;
-    }
-    spa-link::part(link) {
+    a {
       align-items: center;
       color: inherit;
       display: flex;
-      height: 100%;
+      min-height: 100%;
       text-decoration: none;
+    }
+    a:first-of-type {
+      margin-right: auto;
+      padding: 0;
+    }
+    a:first-of-type img {
+      margin: 1rem 0;
+      width: 3rem;
     }
   `,
 })

@@ -1,6 +1,6 @@
 import { highlightAllUnder } from 'https://cdn.skypack.dev/prismjs@1.29.0'
 import { parse } from 'https://unpkg.com/marked@4.3.0/lib/marked.esm.js'
-import ardi from '//cdn.skypack.dev/ardi'
+import ardi from '//unpkg.com/ardi'
 
 const codeToMd = (lang, code) => `
 \`\`\`${lang}

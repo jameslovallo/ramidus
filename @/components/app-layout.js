@@ -1,4 +1,4 @@
-import ardi, { html } from '//cdn.skypack.dev/ardi'
+import ardi, { html } from '//unpkg.com/ardi'
 
 ardi({
   tag: 'app-layout',
@@ -13,9 +13,9 @@ ardi({
       </style>
       <app-nav></app-nav>
       <main>
-        <spa-root>
+        <app-root>
           <slot></slot>
-        </spa-root>
+        </app-root>
       </main>
       <app-footer></app-footer>
     `

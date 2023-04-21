@@ -1,4 +1,4 @@
-import ardi, { html } from '//cdn.skypack.dev/ardi'
+import ardi, { html } from '//unpkg.com/ardi'
 
 ardi({
   tag: 'app-footer',

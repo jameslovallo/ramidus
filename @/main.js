@@ -2,10 +2,10 @@
 const components = [
   'app-footer',
   'app-layout',
+  'app-link',
   'app-nav',
+  'app-root',
   'mark-down',
-  'spa-link',
-  'spa-root',
   'tree-icon',
 ]
 components.forEach((c) => import(`/@/components/${c}.js`))

@@ -1,8 +1,8 @@
-import ardi, { html } from '//cdn.skypack.dev/ardi'
+import ardi, { html } from '//unpkg.com/ardi'
 import headJSON from '/@/head.js'
 
 ardi({
-  tag: 'spa-root',
+  tag: 'app-root',
   template() {
     return html`<slot></slot>`
   },
