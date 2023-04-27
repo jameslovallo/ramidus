@@ -35,11 +35,11 @@ ardi({
         hasCodeBlocks && highlightAllUnder(this.root)
       })
   },
-  ready() {
+  created() {
     this.getMarkdown()
   },
-  propChange(prop) {
-    if (prop.name === 'src' && prop.old && prop.old !== prop.new) {
+  changed(prop) {
+    if (prop.name === 'src' && prop.old && prop.new) {
       this.getMarkdown()
     }
   },
