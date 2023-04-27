@@ -6,45 +6,6 @@ ardi({
   template() {
     return html`<slot></slot>`
   },
-  setHead() {
-    Object.keys(headJSON).forEach((tagType) => {
-      headJSON[tagType].forEach((el) => {
-        this.createTag(document.head, tagType, el)
-      })
-    })
-  },
-  async setPage(doc, path, init) {
-    // check if page is prebuilt
-    const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
-    // handle head
-    if (init && !prebuilt) {
-      this.setHead()
-    }
-    // allow page to request native loading
-    if (doc.includes('<!-- spa-reload -->')) {
-      if (!sessionStorage.getItem('spa-reload')) {
-        sessionStorage.setItem('spa-reload', true)
-        location = path
-        return
-      }
-    } else sessionStorage.removeItem('spa-reload')
-    // set page content
-    this.appLayout.innerHTML = doc
-    document.title = document.querySelector('h1').innerText
-    // build layout classList
-    const pathArray = path.split('/')
-    const pageClass = pathArray[1] || 'home'
-    const pageLevel = 'level-' + pathArray.filter((i) => i.length).length
-    this.appLayout.classList = `${pageClass} ${pageLevel}`
-    // handle scripts
-    this.appLayout.querySelectorAll('script').forEach((tag) => {
-      const newTag = document.createElement('script')
-      newTag.src = tag.src
-      newTag.type = tag.type
-      tag.innerHTML && Function(tag.innerHTML)()
-      tag.replaceWith(newTag)
-    })
-  },
   createTag(target, type, attrs) {
     const tag = document.createElement(type)
     Object.keys(attrs).forEach((key) => {
@@ -52,24 +13,66 @@ ardi({
     })
     target.appendChild(tag)
   },
-  pushHistory(href, data) {
+  handleHead() {
+    Object.keys(headJSON).forEach((tagType) => {
+      headJSON[tagType].forEach((el) => {
+        this.createTag(document.head, tagType, el)
+      })
+    })
+  },
+  handleNativeReload(doc, path) {
+    if (doc.includes('<!-- spa-reload -->')) {
+      if (!sessionStorage.getItem('spa-reload')) {
+        sessionStorage.setItem('spa-reload', true)
+        location = path
+        return
+      }
+    } else sessionStorage.removeItem('spa-reload')
+  },
+  handleClassList(path) {
+    const pathArray = path.split('/')
+    const pageClass = pathArray[1] || 'home'
+    const pageLevel = 'level-' + pathArray.filter((i) => i.length).length
+    appLayout.classList = `${pageClass} ${pageLevel}`
+  },
+  handleScripts() {
+    appLayout.querySelectorAll('script').forEach((tag) => {
+      const newTag = document.createElement('script')
+      newTag.src = tag.src
+      newTag.type = tag.type
+      newTag.innerHTML = tag.innerHTML
+      tag.replaceWith(newTag)
+    })
+  },
+  async setPage(path, doc, init) {
+    // check for native reload
+    this.handleNativeReload(doc, path)
+    // check if page is prebuilt
+    const prebuilt = document.querySelector('meta[name=prebuilt][content=true]')
+    if (init && !prebuilt) this.handleHead()
+    // set page
+    if (!init) appLayout.innerHTML = doc
+    document.title = document.querySelector('h1').innerText
+    this.handleClassList(path)
+    this.handleScripts()
+  },
+  pushHistory(path) {
     history.pushState(
-      { path: href.replace('index.html', '') },
+      { path: path.replace('index.html', '') },
       undefined,
-      href.replace('index.html', '')
+      path.replace('index.html', '')
     )
-    if (!sessionStorage[href]) sessionStorage[href] = data
   },
   ready() {
     if (!window.ramidusInitialized) {
       window.appRoot = this
-      this.appLayout = document.querySelector('app-layout')
-      this.setPage(this.appLayout.innerHTML, location.pathname, true)
+      window.appLayout = document.querySelector('app-layout')
+      this.setPage(location.pathname, appLayout.innerHTML, true)
       // history stuff
-      this.pushHistory(location.pathname, this.appLayout.innerHTML)
+      this.pushHistory(location.pathname)
       addEventListener('popstate', (e) => {
         if (e.state.path) {
-          this.setPage(sessionStorage.getItem(e.state.path), e.state.path)
+          this.setPage(e.state.path, sessionStorage.getItem(e.state.path))
         }
       })
       window.ramidusInitialized = true
