@@ -1,16 +1,19 @@
+import 'https://unpkg.com/ardi/@/components/app-link.js'
+import 'https://unpkg.com/ardi/@/components/app-root.js'
+
 // load all components
 const components = [
   'app-footer',
   'app-layout',
-  'app-link',
   'app-nav',
-  'app-root',
   'mark-down',
   'tree-icon',
 ]
 components.forEach((c) => import(`/@/components/${c}.js`))
 
 // fade in gracefully when components are loaded
-const isDefined = components.map((c) => customElements.whenDefined(c))
+const isDefined = ['app-link', 'app-root', ...components].map((c) =>
+  customElements.whenDefined(c)
+)
 await Promise.allSettled(isDefined)
 document.body.style.opacity = 1

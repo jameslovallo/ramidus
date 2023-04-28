@@ -7,7 +7,7 @@ Ramidus is a SPA template built for custom elements.
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Pages](#pages)
-- [Layouts](#layouts)
+- [Layout](#layout)
 - [Components](#components)
 - [Deployment](#deployment)
 
@@ -42,9 +42,7 @@ The "@" folder contains global content like components, assets, layouts and your
 
 Each page must have its own folder containing an index.html file, i.e. `/about/index.html`. Shared page elements are contained in the `<app-layout>` custom element.
 
-### Writing Pages
-
-Every page must include the following core markup.
+Every page must include the following markup.
 
 ```html
 <body>
@@ -55,8 +53,6 @@ Every page must include the following core markup.
 </body>
 ```
 
-#### Writing with Markdown
-
 You can include markdown on any page using the `<mark-down>` custom element.
 
 ```html
@@ -65,18 +61,18 @@ You can include markdown on any page using the `<mark-down>` custom element.
 
 ### Linking to Pages
 
-To enable SPA-style routing, just add `is=app-link` to any internal link.
+To enable SPA-style routing, just wrap links in an `<app-link>` element.
 
 ```html
-<a is="app-link" href="/about">About Us</a>
-<a is="app-link" href="#getting-started">Getting Started</a>
+<app-link><a href="/about">About Us</a></app-link>
 ```
 
-## Layouts
+## Layout
 
 A layout is a custom element containing the site's shared markup. Layouts should include the `<app-root>` element with a nested `<slot>` to load the page's content. Here is the default layout included with Ramidus.
 
 ```html
+<!-- /@/app-layout.js -->
 <app-nav></app-nav>
 
 <main>
@@ -94,7 +90,7 @@ Global components live in `/@/components` and are registered in `/@/main.js`. Ra
 
 ## Deployment
 
-No build step is required to deploy this site: you can copy this project to a simple server and it will run just fine as-is. You will probably still want to run `npm run build` before you deploy though.
+No build step is required to deploy this site: you can copy this project to a simple server and it will run just fine. You will probably still want to run `npm run build` before you deploy though.
 
 ### Benefits of Building
 

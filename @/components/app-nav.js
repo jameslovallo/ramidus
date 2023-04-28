@@ -10,14 +10,20 @@ ardi({
   template() {
     return html`
       <nav>
-        <a is="app-link" href="/">
-          <img
-            src="/@/assets/ardi.svg"
-            alt="Ardi Logo, a cute monkey in a spacesuit."
-          />
-        </a>
+        <app-link>
+          <a href="/">
+            <img
+              src="/@/assets/ardi.svg"
+              alt="Ardi Logo, a cute monkey in a spacesuit."
+            />
+          </a>
+        </app-link>
         ${nav.map(
-          (page) => html`<a is="app-link" href=${page.href}>${page.label}</a>`
+          (page) => html`
+            <app-link>
+              <a href=${page.href}>${page.label}</a>
+            </app-link>
+          `
         )}
       </nav>
     `
@@ -36,9 +42,8 @@ ardi({
       min-height: 100%;
       text-decoration: none;
     }
-    a:first-of-type {
+    app-link:first-of-type {
       margin-right: auto;
-      padding: 0;
     }
     a:first-of-type img {
       margin: 1rem 0;
