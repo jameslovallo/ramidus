@@ -2,6 +2,8 @@
 
 Ramidus is a SPA template built for custom elements.
 
+<!-- split -->
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
