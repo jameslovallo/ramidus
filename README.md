@@ -2,8 +2,6 @@
 
 Ramidus is a SPA template built for custom elements.
 
-<!-- split -->
-
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -12,6 +10,8 @@ Ramidus is a SPA template built for custom elements.
 - [Layout](#layout)
 - [Components](#components)
 - [Deployment](#deployment)
+
+<!-- split -->
 
 ## Getting Started
 
@@ -99,7 +99,7 @@ No build step is required to deploy this site: you can copy this project to a si
 1. The site's `head` is included with each page instead of being generated when the first page loads.
 2. Building will make it so the first page the user loads is hidden at first, then gracefully fades in after the globally-registered components have loaded, preventing [CLS](https://web.dev/cls/).
 
-### Deploying to Netlify, Vercel or Similar
+### Deployment Settings
 
 | Build Command | Publish Directory |
 | ------------- | ----------------- |
