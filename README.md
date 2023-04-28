@@ -15,7 +15,7 @@ Ramidus is a SPA template built for custom elements.
 
 ## Getting Started
 
-Setup is easy and no tooling is required. You can scaffold your project using `npx` or simply download [this zip file](https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main).
+Setup is easy and no tooling is required. You can scaffold your project using npx or simply download [this zip file](https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main).
 
 ```sh
 npx ramidus@latest && npm run dev
