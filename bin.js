@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-import exec from 'child_process'
 import extract from 'extract-zip'
 import fs from 'fs'
 import https from 'https'
@@ -58,5 +57,3 @@ https
   .on('error', function (err) {
     rm(zip)
   })
-
-exec('npm run dev')
