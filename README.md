@@ -1,29 +1,29 @@
-# Ramidus Docs
+# Ramidus
 
-Ramidus is a SPA template built for custom elements.
+Ramidus is a Single Page Application (SPA) template built for custom elements, bringing many of the benefits of frameworks like Next or Nuxt to vanilla sites. Unlike those frameworks, you're not locked into one way of doing things: all of the code is included in your project, and you are free to modify it however you wish.
 
-## Table of Contents
+<ramidus-header></ramidus-header>
 
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Pages](#pages)
-- [Layout](#layout)
-- [Components](#components)
-- [Deployment](#deployment)
+## Features
 
-<!-- split -->
+1. Instant SPA page loading using the `<app-root>` and `<app-link>` elements.
+1. Pre-load high-profile pages after the first page loads.
+1. Share templates between pages using the `<app-layout>` element.
+1. Easily embed markdown and syntax-highlighted files using the `<mark-down>` element.
+1. Familiar conventions, similar to Next or Nuxt.
+1. No hidden code: customize anything exactly the way you like it.
 
 ## Getting Started
 
 Setup is easy and no tooling is required. You can scaffold your project using npx or simply download [this zip file](https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main).
 
-```sh
+```
 npx ramidus@latest && npm run dev
 ```
 
 ## Project Structure
 
-The "@" folder contains global content like components, assets, layouts and your site's head. This convention keeps the folder first alphabetically so you don't lose it in your content.
+Global content like components, assets, layouts and your site's head are contained in the "@" folder. This naming convention keeps the folder first alphabetically so it's always easy to find.
 
 <div class="tree">
 
@@ -63,7 +63,7 @@ You can include markdown on any page using the `<mark-down>` custom element.
 
 ### Linking to Pages
 
-To enable SPA-style routing, just wrap links in an `<app-link>` element.
+To enable SPA-style routing, just wrap links in an `<app-link>` element. You can set `preload="true"` if you want the linked page to be pre-fetched as soon as the current page loads.
 
 ```html
 <app-link><a href="/about">About Us</a></app-link>
@@ -86,9 +86,17 @@ A layout is a custom element containing the site's shared markup. Layouts should
 <app-footer></app-footer>
 ```
 
+The layout can be updated dynamically based on the page you are on. When each page loads, the path and current page nesting level are added as classes to the `<app-layout>` element, i.e. `class="about level-2"`. You can use these classes to style elements inside the layout element. In the template above, if you wanted to hide the footer on pages under the "about" path, you could use the following css in your layout.
+
+```css
+:host(.about) app-footer {
+  display: none;
+}
+```
+
 ## Components
 
-Global components live in `/@/components` and are registered in `/@/main.js`. Ramidus's core components are built with [Ardi](ardi.netlify.app), but you can use any custom element framework you like (or none).
+Global components go in the `/@/components` folder and are registered in `/@/main.js`. Ramidus's core components are built with [Ardi](ardi.netlify.app), but you can use any custom element framework you like (or none).
 
 ## Deployment
 
@@ -97,7 +105,7 @@ No build step is required to deploy this site: you can copy this project to a si
 ### Benefits of Building
 
 1. The site's `head` is included with each page instead of being generated when the first page loads.
-2. Building will make it so the first page the user loads is hidden at first, then gracefully fades in after the globally-registered components have loaded, preventing [CLS](https://web.dev/cls/).
+2. Building will make it so the first page visited fades in after the globally-registered components have loaded, preventing [CLS](https://web.dev/cls/).
 
 ### Deployment Settings
 

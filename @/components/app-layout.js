@@ -1,4 +1,4 @@
-import ardi, { html } from '//unpkg.com/ardi'
+import ardi, { css, html } from '//unpkg.com/ardi'
 
 ardi({
   tag: 'app-layout',
@@ -13,7 +13,7 @@ ardi({
       <app-footer part="footer"></app-footer>
     `
   },
-  css: /* css */ `
+  styles: css`
     main {
       margin: 0 auto;
       max-width: 70ch;

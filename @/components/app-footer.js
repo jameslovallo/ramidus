@@ -1,4 +1,4 @@
-import ardi, { html } from '//unpkg.com/ardi'
+import ardi, { css, html } from '//unpkg.com/ardi'
 
 ardi({
   tag: 'app-footer',
@@ -9,7 +9,7 @@ ardi({
       </footer>
     `
   },
-  css: /* css */ `
+  styles: css`
     :host {
       background: var(--surface);
       display: block;

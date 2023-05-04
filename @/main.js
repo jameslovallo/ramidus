@@ -3,9 +3,11 @@ import 'https://unpkg.com/ardi/@/components/app-root.js'
 
 // load all components
 const components = [
-  'app-footer',
+  'app-root',
+  'app-link',
   'app-layout',
   'app-nav',
+  'app-footer',
   'mark-down',
   'tree-icon',
 ]

@@ -1,8 +1,8 @@
-import ardi, { html } from '//unpkg.com/ardi'
+import ardi, { css, html } from '//unpkg.com/ardi'
 
 const nav = [
   { href: '/', label: 'Home' },
-  { href: '/docs', label: 'Docs' },
+  { href: '/starters', label: 'Starters' },
 ]
 
 ardi({
@@ -28,9 +28,9 @@ ardi({
       </nav>
     `
   },
-  css: /* css */ `
+  styles: css`
     nav {
-      box-shadow: 0 0 3px rgba(0,0,0,0.25);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
       display: flex;
       gap: 1rem;
       padding: 0 1rem;
