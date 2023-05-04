@@ -1,4 +1,4 @@
-import ardi from '../assets/ardi-min.js'
+import ardi from '//unpkg.com/ardi'
 
 ardi({
   tag: 'app-link',
