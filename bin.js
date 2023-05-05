@@ -11,6 +11,7 @@ const repos = {
 }
 
 const repo = starter ? repos[starter] : repos.base
+const folder = repo + '-main'
 
 const zip = './ramidus.zip'
 
@@ -46,12 +47,12 @@ https
           try {
             await extract(zip, { dir: path.resolve('./') })
             deleteFile(zip)
-            fs.cp('./ramidus-main', './', { recursive: true }, function (err) {
+            fs.cp(folder, './', { recursive: true }, function (err) {
               err && console.log(err)
-              deleteFolder('./ramidus-main')
-              deleteFile('.gitignore')
+              deleteFolder(folder)
               if (!starter) {
                 deleteFile('./bin.js')
+                deleteFile('.gitignore')
                 fs.writeFile('./package.json', pkg, function (err) {
                   err && console.error(err)
                 })
