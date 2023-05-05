@@ -55,18 +55,18 @@ posts.forEach((post) => {
     const text = getFile(filePath)
     const grayMatter = matter(text)
     const content = parse(grayMatter.content)
-    const outPath = './dist/blog/' + post.replace('.md', '').toLowerCase()
-    const outName = outPath + '/index.html'
-    const pubName = outName.replace('./dist', '')
-    fs.mkdirSync(outPath)
+    const postPath = '/blog/' + post.replace('.md', '').toLowerCase()
+    const distPath = './dist/' + postPath
+    const distName = distPath + '/index.html'
+    fs.mkdirSync(distPath)
     fs.writeFileSync(
-      outName,
+      distName,
       doc(head, { content, ...grayMatter.data }).trim(),
       {
         encoding: 'utf8',
       }
     )
-    blogIndex.push({ href: pubName, ...grayMatter.data })
+    blogIndex.push({ href: postPath, ...grayMatter.data })
   }
 })
 
