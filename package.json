@@ -9,9 +9,12 @@
   "dependencies": {
     "@tinacms/cli": "^1.5.11",
     "extract-zip": "^2.0.1",
+    "gray-matter": "^4.0.3",
+    "marked": "^5.0.0",
     "tinacms": "^1.5.4"
   },
   "scripts": {
-    "build": "node @/build.js"
+    "build": "node @/build.js && node @/blog.js",
+    "dev": "tinacms dev -c 'npx browser-sync --files \"**/*\"'"
   }
 }

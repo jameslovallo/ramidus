@@ -7,7 +7,6 @@ export default defineConfig({
   branch,
   clientId: null, // Get this from tina.io
   token: null, // Get this from tina.io
-
   build: {
     outputFolder: 'admin',
     publicFolder: '/',
@@ -27,18 +26,37 @@ export default defineConfig({
         fields: [
           {
             type: 'string',
-            name: 'title',
             label: 'Title',
+            name: 'title',
             isTitle: true,
             required: true,
           },
           {
+            type: 'image',
+            name: 'heroImg',
+            label: 'Hero Image',
+          },
+          {
             type: 'rich-text',
-            name: 'body',
-            label: 'Body',
-            isBody: true,
+            label: 'Excerpt',
+            name: 'excerpt',
+          },
+          {
+            type: 'datetime',
+            label: 'Posted Date',
+            name: 'date',
+            ui: {
+              dateFormat: 'MMMM DD YYYY',
+              timeFormat: 'hh:mm A',
+            },
           },
         ],
+        defaultItem: () => {
+          return {
+            title: 'My New Post',
+            date: Date.now(),
+          }
+        },
       },
     ],
   },

@@ -2,7 +2,7 @@ import ardi, { css, html } from '//unpkg.com/ardi'
 
 const nav = [
   { href: '/', label: 'Home' },
-  { href: '/starters', label: 'Starters' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 ardi({
