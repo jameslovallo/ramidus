@@ -4,13 +4,15 @@ import { parse } from 'marked'
 import path from 'path'
 import headJSON from './head.js'
 
-const doc = (head, body) => `
+const doc = (head, gm) => `
 <!DOCTYPE html>
 <html lang="en-us">
 ${head.trim()}
 <body>
 <app-layout>
-${body.trim()}
+<h1>${gm.title}</h1>
+<p>Published ${new Date(gm.date).toLocaleDateString()}</p>
+${gm.content.trim()}
 </app-layout>
 <script src="/@/main.js" type="module"></script>
 </body>
@@ -57,9 +59,13 @@ posts.forEach((post) => {
     const outName = outPath + '/index.html'
     const pubName = outName.replace('./dist', '')
     fs.mkdirSync(outPath)
-    fs.writeFileSync(outName, doc(head, content).trim(), {
-      encoding: 'utf8',
-    })
+    fs.writeFileSync(
+      outName,
+      doc(head, { content, ...grayMatter.data }).trim(),
+      {
+        encoding: 'utf8',
+      }
+    )
     blogIndex.push({ href: pubName, ...grayMatter.data })
   }
 })
