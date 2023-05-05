@@ -1,6 +1,3 @@
-import 'https://unpkg.com/ardi/@/components/app-link.js'
-import 'https://unpkg.com/ardi/@/components/app-root.js'
-
 // load all components
 const components = [
   'app-root',

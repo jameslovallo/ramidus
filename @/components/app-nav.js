@@ -6,7 +6,7 @@ ardi({
   template() {
     return html`
       <nav>
-        <app-link>
+        <app-link preload="true">
           <a href="/">
             <img
               src="/@/assets/ardi.svg"
@@ -16,7 +16,7 @@ ardi({
         </app-link>
         ${nav.map(
           (page) => html`
-            <app-link>
+            <app-link preload="true">
               <a href=${page.href}>${page.label}</a>
             </app-link>
           `
