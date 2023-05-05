@@ -7,7 +7,9 @@
   "author": "James Lovallo",
   "license": "ISC",
   "dependencies": {
-    "extract-zip": "^2.0.1"
+    "@tinacms/cli": "^1.5.11",
+    "extract-zip": "^2.0.1",
+    "tinacms": "^1.5.4"
   },
   "scripts": {
     "build": "node @/build.js"
