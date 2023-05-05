@@ -39,8 +39,10 @@ ardi({
                   <a href=${post.href}>
                     <img src=${post.heroImg} />
                     <div>
-                      <div>${post.title}</div>
-                      <small>${new Date(post.date).toLocaleDateString()}</small>
+                      <div part="title">${post.title}</div>
+                      <small part="date"
+                        >${new Date(post.date).toLocaleDateString()}</small
+                      >
                     </div>
                   </a>
                 </app-link>
@@ -84,16 +86,18 @@ ardi({
       padding: 0;
     }
     a {
-      display: grid;
       align-items: center;
+      color: currentColor;
+      display: grid;
       gap: 1rem;
       grid-template-columns: 4rem 1fr;
       overflow: hidden;
       text-decoration: none;
     }
-    a:hover,
-    a:focus {
+    a:hover [part='title'],
+    a:focus [part='title'] {
       text-decoration: underline;
+      text-decoration-color: var(--theme-color);
     }
     img {
       border-radius: 50%;

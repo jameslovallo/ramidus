@@ -23,5 +23,9 @@ ardi({
       text-align: center;
       top: 100vh;
     }
+    a {
+      color: unset;
+      text-decoration-color: var(--theme-color);
+    }
   `,
 })

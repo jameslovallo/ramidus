@@ -3,7 +3,7 @@ import ardi, { html } from '//unpkg.com/ardi'
 ardi({
   tag: 'tree-icon',
   props: {
-    color: [String, '#20C997'],
+    color: [String, '#EC4815'],
     icon: [String, 'folder'],
     size: [String, '1.25em'],
   },

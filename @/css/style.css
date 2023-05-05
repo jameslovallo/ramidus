@@ -1,4 +1,5 @@
 :root {
+  --theme-color: #ec4815;
   --border: rgba(125, 125, 125, 0.4);
   --surface: rgba(125, 125, 125, 0.1);
   --surface-heavy: rgba(125, 125, 125, 0.25);
@@ -17,6 +18,11 @@ body {
 
 img {
   max-width: 100%;
+}
+
+a {
+  color: unset;
+  text-decoration-color: var(--theme-color);
 }
 
 h1,
