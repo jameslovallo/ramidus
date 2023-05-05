@@ -4,6 +4,14 @@ import fs from 'fs'
 import https from 'https'
 import path from 'path'
 
+const starter = process.argv[3]
+const repos = {
+  base: 'ramidus',
+  blog: 'ramidus-starter--blog',
+}
+
+const repo = starter ? repos[starter] : repos.base
+
 const zip = './ramidus.zip'
 
 const pkg = `{
@@ -30,7 +38,7 @@ const file = fs.createWriteStream(zip)
 
 https
   .get(
-    'https://codeload.github.com/jameslovallo/ramidus/zip/refs/heads/main',
+    `https://codeload.github.com/jameslovallo/${repo}/zip/refs/heads/main`,
     function (response) {
       response.pipe(file)
       file.on('finish', function () {
@@ -42,10 +50,12 @@ https
               err && console.log(err)
               deleteFolder('./ramidus-main')
               deleteFile('.gitignore')
-              deleteFile('./bin.js')
-              fs.writeFile('./package.json', pkg, function (err) {
-                err && console.error(err)
-              })
+              if (!starter) {
+                deleteFile('./bin.js')
+                fs.writeFile('./package.json', pkg, function (err) {
+                  err && console.error(err)
+                })
+              }
             })
           } catch (err) {
             err && console.log(err)
