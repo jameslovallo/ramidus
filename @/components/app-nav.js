@@ -1,9 +1,5 @@
+import nav from '../nav.js'
 import ardi, { css, html } from '//unpkg.com/ardi'
-
-const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-]
 
 ardi({
   tag: 'app-nav',
