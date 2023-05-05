@@ -38,8 +38,9 @@ export default defineConfig({
           },
           {
             type: 'rich-text',
-            label: 'Excerpt',
-            name: 'excerpt',
+            label: 'Body',
+            name: 'body',
+            isBody: true,
           },
           {
             type: 'datetime',
