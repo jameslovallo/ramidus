@@ -35,13 +35,15 @@ ardi({
           .map(
             (post) => html`
               <li>
-                <a href=${post.href}>
-                  <img src=${post.heroImg} />
-                  <div>
-                    <div>${post.title}</div>
-                    <small>${new Date(post.date).toLocaleDateString()}</small>
-                  </div>
-                </a>
+                <app-link>
+                  <a href=${post.href}>
+                    <img src=${post.heroImg} />
+                    <div>
+                      <div>${post.title}</div>
+                      <small>${new Date(post.date).toLocaleDateString()}</small>
+                    </div>
+                  </a>
+                </app-link>
               </li>
             `
           )}
