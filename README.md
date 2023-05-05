@@ -2,4 +2,4 @@
 
 # Ramidus Blog Starter
 
-This blog starter template was built with [Ramidus](https://ardi.netlify.app/ramidus) and designed to work with [Tina CMS](https://tina.io).
+This blog starter template is built with [Ramidus](https://ardi.netlify.app/ramidus) and is configured to work with [Tina CMS](https://tina.io).

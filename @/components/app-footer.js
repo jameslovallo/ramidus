@@ -5,7 +5,11 @@ ardi({
   template() {
     return html`
       <footer>
-        <p>Made with <a href="https://ardi.netlify.app">Ardi</a></p>
+        <p>&copy; Tina Ramidus</p>
+        <p>
+          Made with <a href="https://ardi.netlify.app">Ardi</a> and
+          <a href="https://ardi.netlify.app/ramidus">Ramidus</a>
+        </p>
       </footer>
     `
   },
