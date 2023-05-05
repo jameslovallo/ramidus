@@ -12,6 +12,7 @@ ${head.trim()}
 <app-layout>
 <h1>${gm.title}</h1>
 <p>Published ${new Date(gm.date).toLocaleDateString()}</p>
+<img src="${gm.heroImg}">
 ${gm.content.trim()}
 </app-layout>
 <script src="/@/main.js" type="module"></script>
